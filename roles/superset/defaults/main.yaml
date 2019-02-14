@@ -1,0 +1,10 @@
+redmine_download_url: http://www.redmine.org/releases/redmine-4.0.0.tar.gz
+redmine_version: 4.0.0
+
+# redmine_download_url: http://www.redmine.org/releases/redmine-3.4.7.tar.gz
+# redmine_version: 3.4.7
+
+# redmine_download_url: http://www.redmine.org/releases/redmine-3.3.9.tar.gz
+# redmine_version: 3.3.9
+
+lang: zh

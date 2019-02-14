@@ -1,0 +1,12 @@
+[Unit]
+After=network.target
+[Service]
+PIDFile=/run/superset/pid
+User=superset
+Group=superset
+WorkingDirectory=/data/wwwroot/superset
+ExecStart=/data/wwwroot/superset/bin/gunicorn --pid /run/superset/pid -w 2 --timeout 60 -b  127.0.0.1:8088 --limit-request-line 0 --limit-request-field_size 0 superset:app
+ExecReload = /bin/kill -s HUP $MAINPID
+ExecStop = /bin/kill -s TERM $MAINPID 
+[Install]
+WantedBy=multi-user.target

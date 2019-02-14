@@ -1,0 +1,11 @@
+---
+
+- name: install Nginx
+  apt:
+    name: nginx
+
+- name: set reverse porxy
+  copy: 
+    src: default
+    dest: /etc/nginx/sites-available
+  notify: restart nginx

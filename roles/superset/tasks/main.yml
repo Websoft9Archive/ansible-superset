@@ -1,0 +1,93 @@
+---
+- include_vars: ../../mysql/defaults/main.yml
+
+- name: required dependencies
+  apt:
+    name: [build-essential,libssl-dev,libffi-dev,python3-dev,python3-pip,libsasl2-dev,libldap2-dev,python3-venv,default-libmysqlclient-dev]
+
+- name: Create User
+  user:
+    name: superset
+    shell: /usr/sbin/nologin
+    create_home: no
+    home: /data/wwwroot/superset
+
+- name: Create Dir
+  file:
+    path: /data/wwwroot
+    state: directory
+    owner: superset
+    group: superset
+
+- name: Install Superset 
+  pip: 
+    name: [superset,setuptools,pip,mysqlclient]
+    virtualenv: /data/wwwroot/superset
+    virtualenv_command: pyvenv
+
+- name: configure Superset databases connection
+  copy:
+    src: config.py
+    dest: /data/wwwroot/superset/lib/python3.6/site-packages/superset
+
+- name: Create databases
+  mysql_db:
+    name: superset
+    login_user: root
+    login_password: '{{mysql_password}}'
+
+- name: fix Bug
+  pip:
+    name: pandas
+    state: absent
+    virtualenv: /data/wwwroot/superset
+
+- name: fix Bug
+  pip:
+    name: pandas==0.23.4
+    virtualenv: /data/wwwroot/superset
+   
+- name: Create Superset an admin user 
+  expect:
+    command: /data/wwwroot/superset/bin/fabmanager create-admin --app superset
+    responses:
+      'Username': "admin"
+      'first': 'admin'
+      'last': "admin"
+      'Email': 'admin@fab.org'
+      'Password:': "admin"
+      'confirmation:': "admin"
+    timeout: 60
+    echo: yes
+
+- name: Initialize the database
+  shell: /data/wwwroot/superset/bin/superset db upgrade
+
+- name: Load some data to play with
+  shell: /data/wwwroot/superset/bin/superset load_examples
+
+- name: Create default roles and permissions
+  shell: /data/wwwroot/superset/bin/superset init
+
+
+- name: Create Superset PID Dir
+  file:
+    path: /run/superset
+    state: directory
+    owner: superset
+    group: superset
+
+- name: Change Dir owner
+  file:
+    path: /data/wwwroot/superset
+    state: directory
+    owner: superset
+    group: superset
+    recurse: yes
+
+- name: superset Server
+  copy:
+    src: superset.service
+    dest: /lib/systemd/system
+  notify: restart superset
+
