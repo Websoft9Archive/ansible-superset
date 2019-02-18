@@ -1,4 +1,3 @@
 # superset
 
-
-随机密码未加入
+用户名/密码: admin/admin
