@@ -19,7 +19,7 @@ Platform. It combines leading open source projects, such as Superset,Nginx,MYSQL
 Websoft9 Superset stack ships with the following software versions:
 
 ********
-— Superset 0.28.1
+- Superset 0.28.1
 - MySQL 5.7.25
 - Nginx 1.14.2
 - Python 3.6.7
