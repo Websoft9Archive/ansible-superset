@@ -70,12 +70,6 @@
   shell: /data/wwwroot/superset/bin/superset init
 
 
-- name: Create Superset PID Dir
-  file:
-    path: /run/superset
-    state: directory
-    owner: superset
-    group: superset
 
 - name: Change Dir owner
   file:
