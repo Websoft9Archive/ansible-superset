@@ -16,7 +16,7 @@ Platform. It combines leading open source projects, such as Superset,Nginx,MYSQL
 
 2. COMPONENTS and Version
 
-Websoft9 IIS stack ships with the following software versions:
+Websoft9 Superset stack ships with the following software versions:
 
 ********
 — Superset 0.28.1
