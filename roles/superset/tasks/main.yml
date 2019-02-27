@@ -93,6 +93,12 @@
 - name: Write Databases Password
   shell: echo 'Databases root Password:'{{mysql_password}}  > /root/password.txt
 
+- name: Password Text File Permission
+  file:
+    path: /root/password.txt
+    mode: 0640
+
+
 - name: Databases Random Password
   copy: 
     src: init.sh
