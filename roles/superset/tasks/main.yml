@@ -120,7 +120,7 @@
   notify: restart superset
 
 - name: Setting File Permission
-  shell: find /data -type f -exec chmod 640 {} \;
+  shell: find /data/* -type f -exec chmod 640 {} \;
 
 - name: Setting Directory Permission
-  shell: find /data -type d -exec chmod 750 {} \;  
+  shell: find /data/* -type d -exec chmod 750 {} \;  
