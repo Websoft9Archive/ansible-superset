@@ -120,7 +120,6 @@
   notify: restart superset
 
 - name: Setting File Permission
-  shell: find /data/* -type f -exec chmod 640 {} \;
-
-- name: Setting Directory Permission
-  shell: find /data/* -type d -exec chmod 750 {} \;  
+  shell: |
+    chmod 640 /data/wwwroot/superset/lib/python3.6/site-packages/tornado/test/test.key
+    chmod 640 /data/wwwroot/superset/lib/python3.6/site-packages/tornado/test/test.crt
