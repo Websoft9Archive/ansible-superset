@@ -36,17 +36,30 @@
     login_user: root
     login_password: '{{mysql_password}}'
 
-- name: fix Bug
+- name: Fix pandas version compatibility problem I
   pip:
     name: pandas
     state: absent
     virtualenv: /data/wwwroot/superset
 
-- name: fix Bug
+- name: Fix pandas version compatibility problem II
   pip:
     name: pandas==0.23.4
     virtualenv: /data/wwwroot/superset
    
+
+- name: Fix sqlalchemy compatibility problem I
+  pip:
+    name: sqlalchemy
+    state: absent
+    virtualenv: /data/wwwroot/superset
+
+- name: Fix sqlalchemy compatibility problem II
+  pip:
+    name: sqlalchemy==1.2.18
+    virtualenv: /data/wwwroot/superset
+
+
 - name: Create Superset an admin user 
   expect:
     command: /data/wwwroot/superset/bin/fabmanager create-admin --app superset
