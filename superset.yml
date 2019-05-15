@@ -7,7 +7,7 @@
   gather_facts: False
   pre_tasks:
    - name: 'install python'
-     raw: 'sudo apt-get -y install python'
+     raw: 'sudo apt update && sudo apt-get -y install python'
 
 
 - name: Superset
@@ -21,6 +21,7 @@
   - { role: mysql , tags: "mysql"}
   - { role: superset  , tags: "superset"} 
   - { role: nginx , tags: "nginx"}
+  - { role: end , tags: "end"}
 
 
 
