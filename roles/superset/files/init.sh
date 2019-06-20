@@ -1,6 +1,6 @@
 #!/bin/bash
 
-old_password=$(cat /credentials/password.txt | awk -F ":" '{print $2}' )
+old_password=$(cat /credentials/password.txt | awk 'NR==2' |awk -F ":" '{print $2}' )
 new_password=$(</dev/urandom tr -dc '12345qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c10)
 
 systemctl restart mysql
