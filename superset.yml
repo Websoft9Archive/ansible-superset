@@ -1,6 +1,6 @@
 ---
 - name: Superset
-  hosts: superset
+  hosts: server
   become: yes
   become_method: sudo
   remote_user: '{{admin_username}}'
@@ -11,7 +11,7 @@
 
 
 - name: Superset
-  hosts: superset
+  hosts: server
   become: yes
   become_method: sudo
   remote_user: '{{admin_username}}'
