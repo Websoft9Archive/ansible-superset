@@ -3,6 +3,7 @@
   hosts: all
   become: yes
   become_method: sudo
+  become_user: root
   remote_user: '{{admin_username}}'
   gather_facts: False
   pre_tasks:
@@ -14,6 +15,7 @@
   hosts: all
   become: yes
   become_method: sudo
+  become_user: root
   remote_user: '{{admin_username}}'
   
   roles:
