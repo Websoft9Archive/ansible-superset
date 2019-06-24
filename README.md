@@ -1,4 +1,4 @@
-# superset自动化安装与部署
+# Superset自动化安装与部署
 
 ## 操作系统
 目前仅支持Ubuntu16.x以上
