@@ -58,3 +58,8 @@
     line: 'bind-address    = 0.0.0.0'
   when: remote 
   notify: restart MySQL
+
+- name: del mysql Automatically generated for Debian scripts.
+  file:
+    path: /etc/mysql/debian.cnf
+    state: absent
