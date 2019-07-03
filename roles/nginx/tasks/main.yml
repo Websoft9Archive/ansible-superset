@@ -8,4 +8,6 @@
   copy: 
     src: default
     dest: /etc/nginx/sites-available
-  notify: restart nginx
+
+- name: restart nginx
+  service: name=nginx state=restarted enabled=yes

@@ -41,23 +41,25 @@
 - name: Removing privileges on test database
   command: mysql -uroot -p{{mysql_password}} -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'"
 
-- name: enable remote access I
-  mysql_user: 
-    login_user: root 
-    login_password: "{{mysql_password}}"
-    name: root
-    host: '%'
-    password: "{{mysql_password}}"
-    priv: '*.*:ALL'
-  when: remote 
+- block:
+  - name: enable remote access I
+    mysql_user: 
+        login_user: root 
+        login_password: "{{mysql_password}}"
+        name: root
+        host: '%'
+        password: "{{mysql_password}}"
+        priv: '*.*:ALL'
 
-- name: enable remote access II
-  lineinfile: 
-    path: /etc/mysql/mysql.conf.d/mysqld.cnf
-    regexp: 'bind-address    = 127.0.0.1'
-    line: 'bind-address    = 0.0.0.0'
-  when: remote 
-  notify: restart MySQL
+  - name: enable remote access II
+    lineinfile: 
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        regexp: 'bind-address    = 127.0.0.1'
+        line: 'bind-address    = 0.0.0.0'
+
+  - name: restart mysql
+    service: name=mysql state=restarted enabled=yes
+  when: remote
 
 - name: del mysql Automatically generated for Debian scripts.
   file:

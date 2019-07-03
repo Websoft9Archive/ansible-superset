@@ -135,7 +135,9 @@
   copy:
     src: superset.service
     dest: /lib/systemd/system
-  notify: restart superset
+
+- name: restart superset
+  service: name=superset state=restarted enabled=yes
 
 - name: Setting File Permission
   shell: |
