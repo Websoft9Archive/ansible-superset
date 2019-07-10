@@ -1,16 +1,10 @@
 ---
-
-- name: APT update
-  command: apt update
-
 - name: Upgrade all packages to the latest version
   apt:
     name: "*"
     state: latest
+    update_cache: yes
     force_apt_get: True
-
-- name: Remove dependencies that are no longer required
-  apt:
     autoremove: yes
 
 - name: Install Common Software
@@ -40,7 +34,7 @@
         line: "/mnt/swap swap swap defaults 0 0"
         state: present
   when: (ansible_swaptotal_mb == 0) and (cloud != 'azure')
-
+  
 - block:
   - name: ResourceDisk EnableSwap
     lineinfile:
