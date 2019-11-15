@@ -90,18 +90,30 @@
     group: superset
     recurse: yes
 
-- name: Setting rc.local
-  file:
-    path: /etc/rc.local
-    state: touch
-    mode: 0750
+- name: superset Server
+  copy:
+    src: superset.service
+    dest: /lib/systemd/system
 
-- name: Write rc.local
-  shell: echo "#!/bin/bash" > /etc/rc.local
+- name: restart superset
+  service: name=superset state=restarted enabled=yes
 
-- name: restart rc.local
-  service: name=rc.local state=restarted enabled=yes
+- name: Setting File Permission
+  shell: |
+    chmod 640 /data/wwwroot/superset/lib/python3.6/site-packages/tornado/test/test.key
+    chmod 640 /data/wwwroot/superset/lib/python3.6/site-packages/tornado/test/test.crt
 
+# nginx
+- name: set reverse porxy
+  copy: 
+    src: default
+    dest: /etc/nginx/sites-available
+
+- name: restart nginx
+  service: name=nginx state=restarted enabled=yes
+
+
+# 设置开机自动运行随机密码脚本
 - name: Create credentials Folder
   file:
     path: /credentials
@@ -116,6 +128,17 @@
 - name: Write Databases Password
   shell: echo -e 'MySQL username:root\nMySQL Password:'{{mysql_password}}  > /credentials/password.txt
 
+- name: Setting rc.local
+  file:
+    path: /etc/rc.local
+    state: touch
+    mode: 0750
+
+- name: Write rc.local
+  shell: echo "#!/bin/bash" > /etc/rc.local
+
+- name: restart rc.local
+  service: name=rc.local state=restarted enabled=yes
 
 - name: Databases Random Password
   copy: 
@@ -129,17 +152,3 @@
     regexp: '/root/init.sh'
     line: '/root/init.sh'
     mode: 0750
-
-
-- name: superset Server
-  copy:
-    src: superset.service
-    dest: /lib/systemd/system
-
-- name: restart superset
-  service: name=superset state=restarted enabled=yes
-
-- name: Setting File Permission
-  shell: |
-    chmod 640 /data/wwwroot/superset/lib/python3.6/site-packages/tornado/test/test.key
-    chmod 640 /data/wwwroot/superset/lib/python3.6/site-packages/tornado/test/test.crt
