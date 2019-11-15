@@ -4,11 +4,10 @@
   become: yes
   become_method: sudo
   become_user: root
-  remote_user: '{{admin_username}}'
   gather_facts: False
   pre_tasks:
    - name: 'install python'
-     raw: 'sudo apt update && sudo apt-get -y install python'
+     raw: 'sudo apt update && sudo apt update && sudo apt-get -y install python'
 
 
 - name: Superset
@@ -16,7 +15,7 @@
   become: yes
   become_method: sudo
   become_user: root
-  remote_user: '{{admin_username}}'
+
   
   roles:
   - { role: common , tags: "common"} 
