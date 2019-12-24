@@ -1,27 +1,24 @@
 ---
-- name: Superset
+- name: Pre_Superset
   hosts: all
   become: yes
   become_method: sudo
-  become_user: root
   gather_facts: False
   pre_tasks:
-   - name: 'install python'
-     raw: 'sudo apt update && sudo apt update && sudo apt-get -y install python'
 
 
 - name: Superset
   hosts: all
   become: yes
   become_method: sudo
-  become_user: root
 
-  
   roles:
   - { role: common , tags: "common"} 
+  - { role: cloud , tags: "cloud"} 
   - { role: mysql , tags: "mysql"}
-  - { role: superset  , tags: "superset"} 
   - { role: nginx , tags: "nginx"}
+  - { role: superset , tags: "superset"}
+  - { role: end  , tags: "end"}  
   
 
 
