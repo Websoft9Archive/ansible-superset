@@ -7,7 +7,7 @@
 
 - name: Download and unarchive Superset
   unarchive:
-    src: {{superset_download_url}}
+    src: "{{superset_download_url}}"
     dest: /data/wwwroot
     remote_src: yes
     
