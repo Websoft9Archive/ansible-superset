@@ -7,8 +7,6 @@
 - src: http://github.com/websoft9dev/role_nginx
   version: master
 
-# 根据需求添加相对应的role
-
 - src: http://github.com/websoft9dev/role_preend
   version: master
 
