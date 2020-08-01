@@ -11,13 +11,10 @@
     dest: /data/wwwroot
     remote_src: yes
     
-- name: Create a symbolic link for raname
-  file:
-    src: /data/wwwroot/incubator-superset-0.36.0
-    dest: /data/wwwroot/surperset
-    owner: superset
-    group: superset
-    state: link
+- name: Rename Superset
+  shell: if [ $( ls | grep "incubator-superset") ]; then mv incubator-superset* superset; fi
+  args:
+    chdir: /data/wwwroot
 
 - name: Docker compose Superset
   shell: docker-compose up
