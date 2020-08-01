@@ -1,24 +1,20 @@
 ---
-- name: Pre_Superset
+- name: Apache Superset
   hosts: all
   become: yes
   become_method: sudo
-  gather_facts: False
-  pre_tasks:
 
-
-- name: Superset
-  hosts: all
-  become: yes
-  become_method: sudo
+  vars_files:
+    - vars/main.yml
 
   roles:
-  - { role: common , tags: "common"} 
-  - { role: cloud , tags: "cloud"} 
-  - { role: mysql , tags: "mysql"}
-  - { role: nginx , tags: "nginx"}
+  - { role: role_common , tags: "role_common"} 
+  - { role: role_cloud , tags: "role_cloud"} 
+  - { role: role_nginx , tags: "role_nginx"}
+  - { role: role_docker , tags: "role_docker"}
   - { role: superset , tags: "superset"}
-  - { role: end  , tags: "end"}  
+  - { role: role_preend  , tags: "role_preend"}  
+  - { role: role_end  , tags: "role_end"}
   
 
 

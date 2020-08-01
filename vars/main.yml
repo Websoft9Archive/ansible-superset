@@ -1,0 +1,46 @@
+#全局
+region: "0"
+
+# rabbitmq variable
+
+rabbitmq_db_name: rabbitmq
+rabbitmq_db_user: rabbitmq
+rabbitmq_db_password: "123456"
+
+preend_certbot: True
+nginx_reverse_proxy_port: "8065"
+
+# role_mysql
+mysql_version: "5.7"       
+mysql_root_password: "123456"
+mysql_remote: True
+
+# docker
+docker_applications: 'phpmyadmin'
+
+# 生成应用数据库和用户
+mysql_databases:
+ - name: rabbitmq
+   encoding: utf8
+ 
+mysql_users:
+ - name: rabbitmq
+   host: localhost
+   priv: 'rabbitmq.*:ALL'
+
+# 初始化MySQL root密码
+init_db: 
+    mysql:
+      user: root
+      password: "123456"  
+  
+# 应用数据库信息
+init_application:
+  rabbitmq:
+    service: rabbitmq
+    database: rabbitmq 
+    database_user: rabbitmq
+    database_host: localhost
+    database_password: "123456"
+    config_path:
+      - /opt/rabbitmq/config/config.json

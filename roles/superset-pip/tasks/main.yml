@@ -1,0 +1,154 @@
+---
+- include_vars: ../../mysql/defaults/main.yml
+
+- name: required dependencies
+  apt:
+    name: [build-essential,libssl-dev,libffi-dev,python3-dev,python3-pip,libsasl2-dev,libldap2-dev,python3-venv,default-libmysqlclient-dev]
+
+- name: Create User
+  user:
+    name: superset
+    shell: /usr/sbin/nologin
+    create_home: no
+    home: /data/wwwroot/superset
+
+- name: Create Dir
+  file:
+    path: /data/wwwroot
+    state: directory
+    owner: superset
+    group: superset
+
+- name: Install Superset 
+  pip: 
+    name: [superset,setuptools,pip,mysqlclient]
+    virtualenv: /data/wwwroot/superset
+    virtualenv_command: pyvenv
+
+- name: configure Superset databases connection
+  copy:
+    src: config.py
+    dest: /data/wwwroot/superset/lib/python3.6/site-packages/superset
+
+- name: Create databases
+  mysql_db:
+    name: superset
+    login_user: root
+    login_password: '{{mysql_password}}'
+
+- name: Fix pandas version compatibility problem I
+  pip:
+    name: pandas
+    state: absent
+    virtualenv: /data/wwwroot/superset
+
+- name: Fix pandas version compatibility problem II
+  pip:
+    name: pandas==0.23.4
+    virtualenv: /data/wwwroot/superset
+   
+
+- name: Fix sqlalchemy compatibility problem I
+  pip:
+    name: sqlalchemy
+    state: absent
+    virtualenv: /data/wwwroot/superset
+
+- name: Fix sqlalchemy compatibility problem II
+  pip:
+    name: sqlalchemy==1.2.18
+    virtualenv: /data/wwwroot/superset
+
+
+- name: Create Superset an admin user 
+  expect:
+    command: /data/wwwroot/superset/bin/fabmanager create-admin --app superset
+    responses:
+      'Username': "admin"
+      'first': 'admin'
+      'last': "admin"
+      'Email': 'admin@fab.org'
+      'Password:': "admin"
+      'confirmation:': "admin"
+    timeout: 60
+    echo: yes
+
+- name: Initialize the database
+  shell: /data/wwwroot/superset/bin/superset db upgrade
+
+- name: Load some data to play with
+  shell: /data/wwwroot/superset/bin/superset load_examples
+
+- name: Create default roles and permissions
+  shell: /data/wwwroot/superset/bin/superset init
+
+- name: Change Dir owner
+  file:
+    path: /data/wwwroot/superset
+    state: directory
+    owner: superset
+    group: superset
+    recurse: yes
+
+- name: superset Server
+  copy:
+    src: superset.service
+    dest: /lib/systemd/system
+
+- name: restart superset
+  service: name=superset state=restarted enabled=yes
+
+- name: Setting File Permission
+  shell: |
+    chmod 640 /data/wwwroot/superset/lib/python3.6/site-packages/tornado/test/test.key
+    chmod 640 /data/wwwroot/superset/lib/python3.6/site-packages/tornado/test/test.crt
+
+# nginx
+- name: set reverse porxy
+  copy: 
+    src: default
+    dest: /etc/nginx/sites-available
+
+- name: restart nginx
+  service: name=nginx state=restarted enabled=yes
+
+
+# 设置开机自动运行随机密码脚本
+- name: Create credentials Folder
+  file:
+    path: /credentials
+    state: directory
+
+- name: Create Password doc
+  file:
+    path: /credentials/password.txt
+    mode: 644
+    state: touch
+
+- name: Write Databases Password
+  shell: echo -e 'MySQL username:root\nMySQL Password:'{{mysql_password}}  > /credentials/password.txt
+
+- name: Setting rc.local
+  file:
+    path: /etc/rc.local
+    state: touch
+    mode: 0750
+
+- name: Write rc.local
+  shell: echo "#!/bin/bash" > /etc/rc.local
+
+- name: restart rc.local
+  service: name=rc.local state=restarted enabled=yes
+
+- name: Databases Random Password
+  copy: 
+    src: init.sh
+    dest: /root/
+    mode: 0750
+
+- name: Setting Startup
+  lineinfile:
+    path: /etc/rc.local
+    regexp: '/root/init.sh'
+    line: '/root/init.sh'
+    mode: 0750

@@ -1,19 +1,16 @@
-- src: https://github.com/websoft9dev/role_common
+- src: http://github.com/websoft9dev/role_common
   version: master
-  name: common
 
-- src: https://github.com/websoft9dev/role_cloud
+- src: http://github.com/websoft9dev/role_cloud
   version: master
-  name: cloud
 
-- src: https://github.com/websoft9dev/role_nginx
+- src: http://github.com/websoft9dev/role_nginx
   version: master
-  name: nginx
 
-- src: https://github.com/websoft9dev/role_end
-  version: master
-  name: end
+# 根据需求添加相对应的role
 
-- src: https://github.com/websoft9dev/role_mysql
+- src: http://github.com/websoft9dev/role_preend
   version: master
-  name: mysql
+
+- src: http://github.com/websoft9dev/role_end
+  version: master
