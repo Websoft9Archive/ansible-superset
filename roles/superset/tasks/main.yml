@@ -26,7 +26,6 @@
 - name: Docker compose Superset
   shell: |
     docker-compose up -d
-    docker-compose exec superset bash /app/docker-init.sh
   args:
     chdir: /data/wwwroot/superset
 
