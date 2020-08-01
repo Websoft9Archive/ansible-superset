@@ -4,6 +4,13 @@
     name: superset
     shell: /usr/sbin/nologin
     create_home: no
+    
+- name: Create Superset-data directory
+  file:
+    path: /data/wwwroot/superset-data
+    state: directory
+    owner: superset
+    group: superset
 
 - name: Download and unarchive Superset
   unarchive:
