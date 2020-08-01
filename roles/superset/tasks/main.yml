@@ -7,7 +7,7 @@
     
 - name: Create Superset-data directory
   file:
-    path: /data/wwwroot/superset-data
+    path: /data/wwwroot/superset_data
     state: directory
     owner: superset
     group: superset
@@ -35,3 +35,9 @@
   include: "{{ansible_os_family}}.yml"
 
 #3 configure Superset
+- name: Create soft link
+  shell:
+    ln -sf /var/lib/docker/volumes/superset_superset_home  /data/wwwroot/superset_data
+    ln -sf /var/lib/docker/volumes/superset_redis  /data/wwwroot/superset_data
+    ln -sf /var/lib/docker/volumes/superset_db_home  /data/wwwroot/superset_data
+    ln -sf /var/lib/docker/volumes/metadata.db  /data/wwwroot/superset_data
