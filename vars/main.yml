@@ -20,7 +20,9 @@ init_docker:
      config_paths: 
        - "/data/.awx/environment.sh"
        - "/data/.awx/credentials.py"
-     compose_path: "/data/.awx/docker-compose.yml" 
+     compose_path: "/data/wwwroot/superset/docker-compose.yml" 
+     commands:
+       - cd /data/wwwroot/superset && docker-compose exec superset bash /app/docker-init.sh
 
 
-    docker-compose exec superset bash /app/docker-init.sh
+    
