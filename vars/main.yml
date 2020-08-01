@@ -5,15 +5,22 @@ nginx_certbot: True
 nginx_reverse_proxy_port: "8088"
 
 # docker
-docker_applications: 'phppgadmin'
+docker_applications: 
+  - 'phppgadmin'
   
-# 应用数据库信息
-init_application:
-  rabbitmq:
-    service: rabbitmq
-    database: rabbitmq 
-    database_user: rabbitmq
-    database_host: localhost
-    database_password: "123456"
-    config_path:
-      - /opt/rabbitmq/config/config.json
+init_docker:
+   awx:
+     admin_username: admin  
+     admin_password: "admin"
+     db: postgresql
+     db_name: superset
+     db_username: superset
+     db_password: "superset"
+     service_after: "docker.service"
+     config_paths: 
+       - "/data/.awx/environment.sh"
+       - "/data/.awx/credentials.py"
+     compose_path: "/data/.awx/docker-compose.yml" 
+
+
+    docker-compose exec superset bash /app/docker-init.sh
