@@ -13,7 +13,7 @@
     
 - name: Create a symbolic link for raname
   file:
-    src: "^incubator-superset*"
+    src: /data/wwwroot/incubator-superset*
     dest: /data/wwwroot/surperset
     owner: superset
     group: superset
