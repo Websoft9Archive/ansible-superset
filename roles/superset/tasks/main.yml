@@ -17,7 +17,7 @@
     chdir: /data/wwwroot
 
 - name: Docker compose Superset
-  shell: docker-compose up
+  shell: docker-compose up -d
   args:
     chdir: /data/wwwroot/superset
 
