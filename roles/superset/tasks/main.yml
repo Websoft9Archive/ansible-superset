@@ -5,19 +5,19 @@
     shell: /usr/sbin/nologin
     create_home: no
 
-- name: Create Superset directory
+- name: Download and unarchive Superset
+  unarchive:
+    src: {{superset_download_url}}
+    dest: /data/wwwroot
+    remote_src: yes
+    
+- name: Create a symbolic link for raname
   file:
-    path: /data/wwwroot/superset
-    state: directory
+    src: incubator-superset*
+    dest: /data/wwwroot/surperset
     owner: superset
     group: superset
-
-- name: Download superset
-  get_url:
-    dest: /data/wwwroot/superset
-    url: "{{superset_download_url}}"
-    owner: superset
-    group: superset
+    state: link
 
 - name: Docker compose Superset
   shell: docker-compose up
