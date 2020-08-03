@@ -18,10 +18,10 @@ init_docker:
      db_password: "superset"
      service_after: "docker.service"
      config_paths: 
-       - "/data/.awx/environment.sh"
-       - "/data/.awx/credentials.py"
+       - /data/wwwroot/superset/docker/.env
      compose_path: "/data/wwwroot/superset/docker-compose.yml" 
      commands:
+       - sed -i "s/--password admin/--password $new_password/g" /data/wwwroot/superset/docker/docker-init.sh
        - cd /data/wwwroot/superset && docker-compose exec superset bash /app/docker-init.sh
 
 
