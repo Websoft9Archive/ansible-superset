@@ -8,10 +8,15 @@ Superset 预装包包含 Superset 运行所需一序列支撑软件（简称为�
 
 ## 路径
 
+本项目出 Nginx 之外，所有组件均基于 Docker 安装，运行 `docker ps` 命令查看所有组件：
+
 ### Superset
 
-Superset 安装目录： */data/superset*  
-Superset 日志目录： */data/logs/superset*  
+Superset 源码目录：*/data/wwwroot/superset*  
+Superset 数据目录：*/data/wwwroot/superset_data*  
+Superset 配置文件：*/data/wwwroot/superset/docker/pythonpath_dev/superset_config.py*  
+
+Superset 数据目录即持久数据卷，包括：数据库数据、配置文件、环境变量、初始化脚本等
 
 ### Nginx
 
@@ -20,12 +25,22 @@ Nginx 主配置文件： */etc/nginx/nginx.conf*
 Nginx 日志文件： */var/log/nginx*  
 Nginx 伪静态规则目录： */etc/nginx/conf.d/rewrite*
 
-### MYSQL
+### PostgreSQL
 
-MySQL 安装路径: */usr/local/mysql*  
-MySQL 数据文件 */data/mysql*  
-MySQL 配置文件: */etc/my.cnf*    
-MySQL 可视化管理地址: *http://服务器公网IP/phpmyadmin*，用户名和密码请见 [账号密码](/zh/stack-accounts.md) 章节。
+PostgreSQL 数据持久存储：**/data/wwwroot/superset_data/volumes/superset_db_home*  *
+
+### Docker
+
+Docker 根目录: */var/lib/docker*  
+Docker 镜像目录: */var/lib/docker/image*   
+Docker 存储卷：*/var/lib/docker/volumes*  
+
+### Docker Compose
+
+本环境使用 Docker Compose 作为容器编排（调度）工具，用于管理多个容器的启动和服务连接。
+
+Docker Compose 命令位置：*/usr/local/bin/docker-compose*  
+Docker Compose 配置目录 */data/wwwroot/superset* 
 
 ## 端口号
 
@@ -35,9 +50,10 @@ MySQL 可视化管理地址: *http://服务器公网IP/phpmyadmin*，用户名�
 
 | 名称 | 端口号 | 用途 |  必要性 |
 | --- | --- | --- | --- |
-| HTTP | 15672 | 通过 HTTP 访问 Superset 控制台 | 可选 |
-| TCP | 5672 | epmd | 可选 |
-| TCP | 55672 | Erlang distribution | 可选 |
+| TCP | 8088 | Superset 端口 | 可选 |
+| TCP | 80 | 通过 HTTP 访问 Superset | 可选 |
+| TCP | 443 | 通过 HTTPS 访问 Superset | 可选 |
+| TCP | 9090 | PostgreSQL 可视化管理工具 phpPgAdmin | 可选 |
 
 ## 版本号
 
@@ -53,16 +69,6 @@ lsb_release -a
 # Nginx  Version
 nginx -V
 
-# Java version
-java -v
-
 # Docker Version
 docker -v
-
-# erlang  Version
-yum info erlang
-apt show erlang
-
-# Superset version
-supersetctl status | grep Superset*
 ```

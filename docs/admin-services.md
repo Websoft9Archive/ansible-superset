@@ -2,32 +2,36 @@
 
 These commands you must know when you using the Superset of Websoft9
 
+> You can run the command `sudo docker ps` to inquire the container's name before manage service
+
 ### Superset
 
 ```shell
-sudo systemctl start superset-server
-sudo systemctl stop superset-server
-sudo systemctl restart superset-server
-sudo systemctl status superset-server
-
-# you can use this debug mode if Superset service can't run
-superset-server console
+sudo docker start superset_postgre_1
+sudo systemctl stop superset_postgre_1
+sudo systemctl restart superset_postgre_1
 ```
 
-### MySQL
+### PostgreSQL
 
 ```shell
-sudo systemctl start mysql
-sudo systemctl stop mysql
-sudo systemctl restart mysql
-sudo systemctl status mysql
+sudo docker start superset_db_1
+sudo docker stop superset_db_1
+sudo docker restart superset_db_1
 ```
 
 ### Redis
 
 ```shell
-sudo systemctl start redis
-sudo systemctl stop redis
-sudo systemctl restart redis
-sudo systemctl status redis
+sudo docker start superset_redis_1
+sudo docker stop superset_redis_1
+sudo docker restart superset_redis_1
+```
+
+### phpPgAdmin
+
+```shell
+sudo docker start phppgadmin
+sudo docker stop phppgadmin
+sudo docker restart phppgadmin
 ```

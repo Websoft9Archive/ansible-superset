@@ -26,4 +26,15 @@ yum update -y --skip-broken
 
 ## Superset Upgrade
 
-Refer to the official docs: [Upgrading Superset](https://www.superset.com/upgrade.html)
+You can upgrade Superset by its Github repository like this:
+
+1. Use SSH to connect your Server and git pull Superset repository
+   ```
+   cd /data/wwwroot/superset
+   git pull
+   ```
+2. Run the container again
+   ```
+   docker-compose down
+   docker-compose up -d
+   ```

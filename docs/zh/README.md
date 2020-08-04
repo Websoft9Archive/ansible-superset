@@ -6,9 +6,9 @@ home: false
 
 本文档由 [Websoft9](https://www.websoft9.com/) 公司提供，用于指导用户学习 Superset 的安装部署与基本运维技术，包括：Superset部署、初始化安装、环境配置、HTTPS、SMTP、备份升级和连接云服务器操作等基本操作。
 
-[Superset](https://www.superset.com) 流行的开源消息队列系统，用erlang语言开，是AMQP（高级消息队列协议）的标准实现。用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面表现不俗。
+[Apache Superset](https://superset.apache.org/) 是一个开源的数据探查与可视化平台（曾用名 Panoramix、Caravel ），该工具在可视化、易用性和交互性上非常有特色，用户可以轻松对数据进行可视化分析。Superset 也是一款企业级商业智能 Web 应用程序。
 
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/superset/superset-gui-websoft9.png)
+![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-dash-websoft9.png)
 
 ---
 

@@ -15,9 +15,21 @@ Follow is the sample using **SendGrid's SMTP Service** to configure sending mail
    SMTP username: websoft9smtp
    SMTP password: #fdfwwBJ8f    
    ```
-2. Log in Superset Console
-3. Enter the SMTP settings
-![Metabase SMTP](https://libs.websoft9.com/Websoft9/DocsPicture/en/metabase/metabase-smtp-websoft9.png)
-4. Click the **Test Connection**, you can get the feedback *"no errors were..."* if SMTP is useful
+2. Edit [Superset configuration file](/stack-components.md#superset)([refer to docs](https://superset.incubator.apache.org/installation.html?highlight=smtp)）
+   ```
+   # smtp server configuration
+   EMAIL_NOTIFICATIONS = True  # all the emails are sent using dryrun
+   SMTP_HOST = 'smtp.163.com'
+   SMTP_STARTTLS = True
+   SMTP_SSL = True
+   SMTP_USER = 'websoft9@163.com'
+   SMTP_PORT = 465
+   SMTP_PASSWORD = '#wwBJ8'
+   SMTP_MAIL_FROM = 'websoft9@163.com'
+   ```
+3. Saved and restart Superset container
+   ```
+   sudo docker restart superset_postgre_1
+   ```
 
 More SMTP Service(Gmail, Hotmail, QQ mail, Yahoo mail, SendGrid and so on)  settings or Issues with SMTP, please refer to Websoft9's *[SMTP Guide](https://support.websoft9.com/docs/faq/tech-smtp.html)*

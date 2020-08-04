@@ -10,16 +10,20 @@
 
 ## Superset 安装向导
 
-1. 使用本地电脑的 Chrome 或 Firefox 浏览器访问网址：*http://域名:15672* 或 *http://Internet IP:15672*, 进入初始化页面
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/superset/superset-login-websoft9.png)
+1. 使用本地电脑的 Chrome 或 Firefox 浏览器访问网址：*http://域名* 或 *http://Internet IP*, 进入登录页面
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-login-websoft9.png)
 
 2. 输入账号密码（[不知道账号密码？](/zh/stack-accounts.md#superset)），成功登录到 Superset 后台  
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/superset/superset-bk-websoft9.png)
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-console-websoft9.png)
 
-3. 登录后通过：【Users】>【Admin】>【Permissions】>【Update this user】设置新密码  
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/superset/superset-pw-websoft9.png)
+3. 依次打开：【Superset Admin】>【Profiles】设置新密码  
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-resetpw-websoft9.png)
 
-> 需要了解更多 Superset 的使用，请参考官方文档：[Superset Documentation](https://www.superset.com/documentation.html)
+4. 通过右上角国旗图标设置你所需的语言 
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-setlanguagech-websoft9.png)
+
+
+> 需要了解更多 Superset 的使用，请参考官方文档：[Getting Started with Superset using Docker](https://github.com/apache/incubator-superset/blob/master/docker/README.md)
 
 ## 常见问题
 
@@ -27,6 +31,6 @@
 
 您的服务器对应的安全组15672端口没有开启（入规则），导致浏览器无法访问到服务器的任何内容
 
-#### Superset 服务启动失败？
+#### Superset 采用的哪种安装方式？
 
-暂无
+本项目基于 Docker 安装

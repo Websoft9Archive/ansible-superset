@@ -1,19 +1,16 @@
 # FAQ
 
-#### How can I enable the debug mode of Superset service?
+####  Does Superset support multiple languages?
 
-```
-systemctl stop superset-server
-superset-server console
-```
+Yes
 
 #### Can I reset password of Superset by command?
 
-Yes, e.g `supersetctl change_password  admin newpassword`
+no
 
 #### If there is no domain name, can I deploy Superset?
 
-Yes, visit Superset by *http://Internet IP:8161*
+Yes, visit Superset by *http://Internet IP*
 
 #### What is the password for the database root user?
 
@@ -21,7 +18,7 @@ The password is stored in the server related file: `/credentials/password.txt`
 
 #### Is there a web-base GUI database management tools?
 
-Yes, phpMyAdmin is on it, visit by *http://Internet IP:9090*
+Yes, phpPgAdmin is on it, visit by *http://Internet IP:9090*
 
 #### Is it possible to modify the source path of Superset?
 
@@ -32,9 +29,9 @@ No
 Change owner(group) or permissions like below:
 
 ```shell
-chown -R apache.apache /data/wwwroot
-find /data/wwwroot -type d -exec chmod 750 {} \;
-find /data/wwwroot -type f -exec chmod 640 {} \;
+chown -R apache.apache /data/wwwroot/superset
+find /data/wwwroot/superset -type d -exec chmod 750 {} \;
+find /data/wwwroot/superset -type f -exec chmod 640 {} \;
 ```
 
 #### What's the difference between Deployment and Installation?

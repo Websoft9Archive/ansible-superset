@@ -15,9 +15,20 @@
    SMTP username: websoft9@163.com
    SMTP password: #wwBJ8    //此密码不是邮箱密码，是需要通过163邮箱后台设置去获取的授权码
    ```
-2. 登录 Superset 控制台
-3. 填写 SMTP 参数
-![Metabase SMTP](https://libs.websoft9.com/Websoft9/DocsPicture/en/metabase/metabase-smtp-websoft9.png)
-4. 点击【Test Connection】
-
+2. 编辑 [Superset 配置文件](/zh/stack-components.md#superset)，修改其中的 SMTP 相关设置（[参考官方文档](https://superset.incubator.apache.org/installation.html?highlight=smtp)）后保存
+   ```
+   # smtp server configuration
+   EMAIL_NOTIFICATIONS = True  # all the emails are sent using dryrun
+   SMTP_HOST = 'smtp.163.com'
+   SMTP_STARTTLS = True
+   SMTP_SSL = True
+   SMTP_USER = 'websoft9@163.com'
+   SMTP_PORT = 465
+   SMTP_PASSWORD = '#wwBJ8'
+   SMTP_MAIL_FROM = 'websoft9@163.com'
+   ```
+3. 重启 Superset 容器后生效
+   ```
+   sudo docker restart superset_postgre_1
+   ```
 更多邮箱设置（QQ邮箱，阿里云邮箱，Gmail，Hotmail等）以及无法发送邮件等故障之诊断，请参考由Websoft9提供的 [SMTP 专题指南](https://support.websoft9.com/docs/faq/zh/tech-smtp.html)

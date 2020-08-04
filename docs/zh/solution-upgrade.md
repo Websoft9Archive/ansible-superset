@@ -24,4 +24,14 @@ yum update -y --skip-broken
 
 ## Superset升级
 
-详情参考官方升级文档：[Upgrading Superset](https://www.superset.com/upgrade.html)
+Superset 升级是通过重新下载官方 Github 项目后，重新运行容器实现，具体如下：
+
+1. 登录到云服务器，更新 git 项目
+   ```
+   cd /data/wwwroot/superset
+   git pull
+   ```
+2. 重新运行容器
+   ```
+   docker-compose up -d
+   ```

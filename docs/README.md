@@ -6,9 +6,9 @@ home: false
 
 This documentation is provided by [Websoft9](https://www.websoft9.com/), it can help users to acquire skills of Superset Deployment, Installation, Configuration, HTTPS, SMTP, Backup, Upgrade, Connect Instance and more.
 
-[Superset](https://superset-server.apache.org/) is the most widely deployed open source message broker. With more than 35,000 production deployments of Superset world-wide at small startups and large enterprises, Superset is the most popular open source message broker.
+[Apache Superset](https://superset.apache.org/) (incubating) is a modern, enterprise-ready business intelligence web application
 
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/superset/superset-gui-websoft9.png)
+![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-dash-websoft9.png)
 
 ---
 

@@ -6,28 +6,17 @@
 
 #### 如何查看错误日志？
 
-日志文件路径为：`/data/logs`。检索关键词 **Failed** 或者 **error** 查看错误
+通过 `sudo docker logs superset_postgre_1` 查看 Superset 容器错误日志
 
-#### Superset服务无法启动？
+#### Superset 运行报错？
 
-服务无法启动最常见的问题包括：磁盘空间不足，内存不足，配置文件错误。  
-建议先通过命令进行排查  
+先通过如下的命令，重新运行容器
 
-```shell
-# 查看磁盘空间
-df -lh
-
-# 查看内存使用
-free -lh
-
-# 查看服务状态和日志
-systemctl status superset
-journalctl -u superset
+```
+cat /data/wwwroot/superset
+docker-compose down
+docker-compose up -d
 ```
 
-#### 在Chrome下修改密码后报错？
-
-这个并不是服务器端的问题，只要更新浏览器即可。
-
-![chrome error of Superset](https://libs.websoft9.com/Websoft9/DocsPicture/zh/superset/superset-chromeerror-websoft9.png)
+如果仍然报错，请检查数据库连接、持久化存储挂载是否准确无误。
 
