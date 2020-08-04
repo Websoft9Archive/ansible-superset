@@ -37,7 +37,7 @@
   
 - name: Create soft link
   shell:
-    ln -sf /var/lib/docker/volumes/superset_postgre_home  /data/wwwroot/superset_data
-    ln -sf /var/lib/docker/volumes/superset_redis  /data/wwwroot/superset_data
-    ln -sf /var/lib/docker/volumes/superset_db_home  /data/wwwroot/superset_data
-    ln -sf /var/lib/docker/volumes/metadata.db  /data/wwwroot/superset_data
+    ln -sf /var/lib/docker/volumes /data/wwwroot/superset_data
+    ln -sf /data/wwwroot/superset/docker  /data/wwwroot/superset_data
+    ln -sf /data/wwwroot/superset/postgre  /data/wwwroot/superset_data
+    ln -sf /data/wwwroot/superset/postgre-frontend  /data/wwwroot/superset_data
