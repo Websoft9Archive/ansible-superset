@@ -13,6 +13,7 @@
   - { role: role_nginx , tags: "role_nginx"}
   - { role: role_docker , tags: "role_docker"}
   - { role: superset , tags: "superset"}
+  - { role: role_init_password , tags: "role_init_password"}  
   - { role: role_preend  , tags: "role_preend"}  
   - { role: role_end  , tags: "role_end"}
   
