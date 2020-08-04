@@ -6,7 +6,7 @@
 
 [English](/README.md) | [简体中文](/README_zh.md)  
 
-**Superset Cloud Installer**, developed by [Websoft9](https://www.websoft9.com), is an automatic installation program of [Apache Superset](https://superset.apache.org/) based on Ansible. It helps user install Graylog and pre-configure required items automatically and users only need to run a command on Linux. It simplifies the complicated installation and initialization process.  
+**Superset Cloud Installer**, developed by [Websoft9](https://www.websoft9.com), is an automatic installation program of [Apache Superset](https://superset.apache.org/) based on Ansible. It helps user install Superset and pre-configure required items automatically and users only need to run a command on Linux. It simplifies the complicated installation and initialization process.  
 
 ## System Requirement
 
@@ -66,10 +66,10 @@ Copyright (c) 2016-present, Websoft9
 
 Yes.
 
-#### How to install and view the latest release？
+#### How to install and view the latest release?
 
-Get the Graylog version from [Graylog Download page](https://www.graylog.org/downloads#open-source), and modify the Ansible variable **[awx_version](/roles/ansible/defaults/main.yml)** to change the Graylog version for this repository. 
+Get the Superset version from [Superset repository](https://github.com/apache/incubator-superset/releases), and modify the Ansible variable **[superset_version](/roles/ansible/superset/defaults/main.yml)** to change the Superset version for this repository. 
 
 #### Is the default password safe?
 
-Graylog Cloud Installer use the random password solution, every installation have different password, that mean your password is different from other users
+Superset Cloud Installer use the random password solution, every installation have different password, that mean your password is different from other users
