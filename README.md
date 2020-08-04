@@ -6,7 +6,7 @@
 
 [English](/README.md) | [简体中文](/README_zh.md)  
 
-**Superset Cloud Installer**, developed by [Websoft9](https://www.websoft9.com), is an automatic installation program of [Apache Superset](https://superset.apache.org/) based on Ansible. It helps user install Superset and pre-configure required items automatically and users only need to run a command on Linux. It simplifies the complicated installation and initialization process.  
+**Superset Cloud Installer**, developed by [Websoft9](https://www.websoft9.com), is an automatic installation program of [Apache Superset](https://superset.apache.org/) based on Ansible and shell. It helps user install Superset and pre-configure required items automatically and users only need to run a command on Linux. It simplifies the complicated installation and initialization process.  
 
 ## System Requirement
 
