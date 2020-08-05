@@ -10,19 +10,19 @@ docker_applications:
   - 'phppgadmin'
   
 init_docker:
-   superset:
-     admin_username: admin  
-     admin_password: "admin"
-     db: postgresql
-     db_name: superset
-     db_username: superset
-     db_password: "superset"
-     service_after: "docker.service"
-     compose_path: "/data/wwwroot/superset/docker-compose.yml" 
-     compose_commands: 
-       - sed -i "s/DATABASE_PASSWORD=superset/DATABASE_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env
-       - sed -i "s/POSTGRES_PASSWORD=superset/POSTGRES_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env
-       - sed -i "s/--password admin/--password $new_password/g" /data/wwwroot/superset/docker/docker-init.sh
-       - rm -rf /var/lib/docker/volumes/*
+  superset:
+    admin_username: admin  
+    admin_password: "admin"
+    db: postgresql
+    db_name: superset
+    db_username: superset
+    db_password: "superset"
+    service_after: "docker.service"
+    compose_path: "/data/wwwroot/superset/docker-compose.yml" 
+    compose_commands: 
+      - sed -i "s/DATABASE_PASSWORD=superset/DATABASE_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env
+      - sed -i "s/POSTGRES_PASSWORD=superset/POSTGRES_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env
+      - sed -i "s/--password admin/--password $new_password/g" /data/wwwroot/superset/docker/docker-init.sh
+      - rm -rf /var/lib/docker/volumes/*
 
     
