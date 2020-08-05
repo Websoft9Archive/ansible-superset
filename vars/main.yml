@@ -10,7 +10,7 @@ docker_applications:
   - 'phppgadmin'
   
 init_docker:
-   awx:
+   superset:
      admin_username: admin  
      admin_password: "admin"
      db: postgresql
