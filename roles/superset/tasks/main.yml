@@ -45,9 +45,7 @@
 #3 version output
 - name: Check Graylog Version
   shell: |
-    sudo echo  `docker exec -it superset_db_1 /bin/bash -c "psql -V"` |sudo tee -a /data/logs/install_version.txt
-    sudo echo  `docker exec -it superset_superset_1 /bin/bash -c "superset version |grep Superset"` |sudo tee -a /data/logs/install_version.txt
-    sudo echo  `docker-compose exec redis bash -c "/usr/local/bin/redis-server -v "` |sudo tee -a /data/logs/install_version.txt
-  args:
-    chdir: /data/wwwroot/superset
+    sudo echo -e "superset_version: `docker exec -it superset_superset_1 /bin/bash -c 'cat /usr/local/bin/superset | sed -n 3p |cut -b 34-39'`\n" |sudo tee -a /data/logs/install_version.txt
+    sudo echo -e "postgres_version: `docker exec -it superset_db_1 /bin/bash -c 'psql -V |cut -d " " -f 3'`\n" |sudo tee -a /data/logs/install_version.txt
+    sudo echo -e "redis_version: `docker exec -it superset_redis_1 /bin/bash -c '/usr/local/bin/redis-server -v |cut -d " " -f 3 |cut -d "=" -f 2'`\n" |sudo tee -a /data/logs/install_version.txt
 
