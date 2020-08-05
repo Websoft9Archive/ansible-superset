@@ -41,3 +41,11 @@
     ln -sf /data/wwwroot/superset/docker  /data/wwwroot/superset_data
     ln -sf /data/wwwroot/superset/postgre  /data/wwwroot/superset_data
     ln -sf /data/wwwroot/superset/postgre-frontend  /data/wwwroot/superset_data
+
+#3 version output
+- name: Check Graylog Version
+  shell: |
+    sudo echo  `docker-compose exec superset bash -c "superset version |grep Superset "` |tee -a /data/logs/install_version.txt
+  args:
+    chdir: /data/wwwroot/superset
+
