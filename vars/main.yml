@@ -2,7 +2,7 @@
 region: "0"
 common_os_support: ["CentOS", "Ubuntu", "Amazon"]
 
-nginx_certbot: True
+nginx_certbot: false
 nginx_reverse_proxy_port: "8088"
 
 # docker
