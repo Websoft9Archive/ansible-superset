@@ -32,9 +32,23 @@
 #2 Install by OS_family
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
-
-#3 configure Superset
   
+#3 docker-compose add phppgadmin and config
+- name: docker-compose add phppgadmin and config
+  blockinfile:
+    path: /data/wwwroot/superset/docker-compose.yml
+    insertafter: "- db_home:/var/lib/postgresql/data"
+    block: |
+	    phppgadmin:
+		    restart: unless-stopped
+		    image: dockage/phppgadmin
+		    ports:
+		      - "9090:80"
+		    environment:
+		      - PHP_PG_ADMIN_SERVER_DESC=PostgreSQL
+		      - PHP_PG_ADMIN_SERVER_HOST=db
+
+#4 configure Superset
 - name: Create soft link
   shell:
     ln -sf /var/lib/docker/volumes /data/wwwroot/superset_data
@@ -42,7 +56,7 @@
     ln -sf /data/wwwroot/superset/postgre  /data/wwwroot/superset_data
     ln -sf /data/wwwroot/superset/postgre-frontend  /data/wwwroot/superset_data
 
-#3 version output
+#5 version output
 - name: Check Graylog Version
   shell: |
     sudo echo -e "superset_version: `docker exec -it superset_superset_1 /bin/bash -c 'cat /usr/local/bin/superset | sed -n 3p |cut -b 34-39'`\n" |sudo tee -a /data/logs/install_version.txt
