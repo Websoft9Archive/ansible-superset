@@ -4,16 +4,16 @@
     name: superset
     shell: /usr/sbin/nologin
     create_home: no
-    
+
+- name: delete old installfiles
+  shell: rm -rf /data/wwwroot/*
+  
 - name: Create Superset-data directory
   file:
     path: /data/wwwroot/superset_data
     state: directory
     owner: superset
     group: superset
-   
-- name: delete old installfiles
-  shell: rm -rf /data/wwwroot/incubator-superset*
 
 - name: Download and unarchive Superset
   unarchive:
