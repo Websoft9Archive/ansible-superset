@@ -6,8 +6,7 @@ nginx_certbot: true
 nginx_reverse_proxy_port: "8088"
 
 # docker
-docker_applications: 
-  - 'phppgadmin'
+docker_applications:
   
 init_docker:
   superset:
