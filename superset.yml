@@ -11,7 +11,7 @@
   - { role: role_common , tags: "role_common"} 
   - { role: role_cloud , tags: "role_cloud"} 
   - { role: role_nginx , tags: "role_nginx"}
- # - { role: role_docker , tags: "role_docker"}
+  - { role: role_docker , tags: "role_docker"}
   - { role: superset , tags: "superset"}
   - { role: role_init_password , tags: "role_init_password"}  
   - { role: role_preend  , tags: "role_preend"}  
