@@ -11,6 +11,9 @@
     state: directory
     owner: superset
     group: superset
+   
+- name: delete old installfiles
+  shell: rm -rf /data/wwwroot/incubator-superset*
 
 - name: Download and unarchive Superset
   unarchive:
