@@ -44,7 +44,7 @@
           image: dockage/phppgadmin
           ports:
             - "9090:80"
-	  environment:
+          environment:
             - PHP_PG_ADMIN_SERVER_DESC=PostgreSQL
             - PHP_PG_ADMIN_SERVER_HOST=db
 
