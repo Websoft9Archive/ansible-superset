@@ -9,7 +9,7 @@ nginx_reverse_proxy_port: "8088"
 docker_applications:
   - phppgadmin
  
-docker_compose_host: "172.27.0.1"
+docker_compose_host: "172.17.0.1"
   
 init_docker:
   superset:
