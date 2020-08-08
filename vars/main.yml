@@ -7,6 +7,7 @@ nginx_reverse_proxy_port: "8088"
 
 # docker
 docker_applications:
+  - phppgadmin
   
 init_docker:
   superset:
