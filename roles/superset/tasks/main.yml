@@ -34,7 +34,7 @@
 - name: network outer
   lineinfile:
       dest: /data/wwwroot/superset/docker-compose.yml
-      regexp: '      - 127.0.0.1:5432:5432"'
+      regexp: '      - "127.0.0.1:5432:5432"'
       line: '      - "5432:5432"'
       backrefs: yes
   
