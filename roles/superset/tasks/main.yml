@@ -31,19 +31,11 @@
   include: "{{ansible_os_family}}.yml"
   
 #3 docker-compose add phppgadmin and config
-
-
 - name: Docker compose Superset
   shell: |
     docker-compose up -d
   args:
     chdir: /data/wwwroot/superset
-
-- name: Run docker phppgadmin
-  shell:
-    docker-compose up -d
-  args:
-    chdir: /data/config/docker/
 
 #4 configure Superset
 - name: Create soft link
