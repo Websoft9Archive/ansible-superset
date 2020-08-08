@@ -29,6 +29,14 @@
 #2 Install by OS_family
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
+
+# network outer
+- name: network outer
+  lineinfile:
+      dest: /data/wwwroot/superset/docker-compose.yml
+      regexp: "127.0.0.1:5432"
+      line: "5432"
+      backrefs: yes
   
 #3 docker-compose add phppgadmin and config
 - name: Docker compose Superset
