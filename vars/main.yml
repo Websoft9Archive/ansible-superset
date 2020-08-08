@@ -8,8 +8,6 @@ nginx_reverse_proxy_port: "8088"
 # docker
 docker_applications:
   - 'phppgadmin'
- 
-docker_compose_host: "db"
   
 init_docker:
   superset:
