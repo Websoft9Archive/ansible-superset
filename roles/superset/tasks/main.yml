@@ -54,7 +54,7 @@
     ln -sf /data/wwwroot/superset/postgre-frontend  /data/wwwroot/superset_data
 
 #5 version output
-- name: Check Graylog Version
+- name: Check Superset Version
   shell: |
     sudo echo -e "superset_version: `docker exec -it superset_superset_1 /bin/bash -c 'cat /usr/local/bin/superset | sed -n 3p |cut -b 34-39'`\n" |sudo tee -a /data/logs/install_version.txt
     sudo echo -e "postgres_version: `docker exec -it superset_db_1 /bin/bash -c 'psql -V |cut -d " " -f 3'`\n" |sudo tee -a /data/logs/install_version.txt
