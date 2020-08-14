@@ -16,7 +16,7 @@ Seafile 预装包中内置 PostgreSQL 容器以及可视化管理工具 phpPgAdm
 
 ## 命令管理
 
-可以登录容器后使用命令对 phpPgAdmin。 进行操作。
+可以登录容器后使用命令对 phpPgAdmin 进行操作。
 
 1. 使用 SSH 登录服务器后，运行`docker ps`命令获取 Name 或 ID
 
