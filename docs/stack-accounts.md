@@ -12,10 +12,10 @@ These accounts are required for Superset image installation and configuration
 * Superset administrator password: stored in the file of your server */credentials/password.txt*
   > If there no password.txt exist, the administrator password is `admin`
 
-## MySQL
+## PostgreSQL
 
-* MySQL administrator username: `root`
-* MySQL administrator password: stored in the file of your server */credentials/password.txt*  
+* PostgreSQL administrator username: `root`
+* PostgreSQL administrator password: stored in the file of your server */credentials/password.txt*  
 
 ## Linux
 
