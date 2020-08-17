@@ -10,7 +10,7 @@ Superset deployment package includes PostgreSQL and GUI tools phpPgAdmin, refer 
 4. Start to manage PostgreSQL
   ![phpPgadmin](https://libs.websoft9.com/Websoft9/DocsPicture/en/postgresql/phppgadmin-console-websoft9.png)
 
-### Manage PostgreSQL by CMD
+### Manage PostgreSQL by cli
 
 1. Use the SSH to connect your Server of Seafile, then run the command `docker ps` to list all containers
   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/awx/awx-getcontainerid-websoft9.png)
