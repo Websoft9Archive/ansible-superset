@@ -10,7 +10,7 @@
 - src: http://github.com/websoft9dev/role_nginx
   version: master
   
-- src: http://github.com/websoft9dev/role_init_password
+- src: http://github.com/websoft9dev/role_initpassword
   version: master
 
 - src: http://github.com/websoft9dev/role_preend
