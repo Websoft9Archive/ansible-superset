@@ -24,9 +24,11 @@ init_docker:
     service_after: "docker.service"
     compose_path: "/data/wwwroot/superset/docker-compose.yml" 
     compose_commands: 
+      - sudo sleep 40s
       - sudo sed -i "s/DATABASE_PASSWORD=superset/DATABASE_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env
       - sudo sed -i "s/POSTGRES_PASSWORD=superset/POSTGRES_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env
       - sudo sed -i "s/--password admin/--password $new_password/g" /data/wwwroot/superset/docker/docker-init.sh
       - sudo rm -rf /var/lib/docker/volumes/*
+      - sudo sleep 20s
 
     
