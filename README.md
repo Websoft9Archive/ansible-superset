@@ -37,7 +37,7 @@ Run the automatic installation script with **root** authority to start the insta
 
 ```
 $ sudo su -
-$ wget -N https://raw.githubusercontent.com/Websoft9/ansible-linux/master/scripts/install.sh; bash install.sh -r superset
+$ wget -N https://raw.githubusercontent.com/Websoft9/ansible-linux/main/scripts/install.sh; bash install.sh -r superset
 ```
 
 If the network is broken or blocked, SSH will be interrupted and the installation will fail. Please reinstall.
