@@ -2,17 +2,14 @@
 
 ## To do
 
-1. 可视化管理工具
-2. AmazonLinux支持
+1. More solution
 
 ## Logs
 
 ### Bug Fixes
 
-* 2020-02-14  redis-version版本输出
-* 2020-02-13  redis-version版本输出
+* 2020-11-24  upgrade to 0.38.0, modify the error of 0.37.2
 
 ### Features
 
-* 2020-02-14  增加GUI工具
-* 2020-02-13  增加2.8版本
+* 2020-02-14  completed
