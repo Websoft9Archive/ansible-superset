@@ -17,7 +17,7 @@ System Requirement to install this repository are as following：
 | Operating System   | CentOS7.x, Ubuntu18.04, Amazon Linux2 | Optional                 |
 | Public Cloud     | AWS, Azure, Alibaba Cloud, HUAWEI ClOUD, Tencent Cloud    | Optional                 |
 | Private Cloud     | KVM, VMware, VirtualBox, OpenStack    | Optional                 |
-| Server Configuration | vCPU no less than 1 core, Memory no less than  2 GIB, Storage no less than 10 GB, Bandwidth no less than 100M ||
+| Server Configuration | vCPU no less than 2 core, Memory no less than 4 GIB, Storage no less than 20 GB, Bandwidth no less than 100M ||
 
 To learn more information, please view [Installation & Configuration](https://superset.apache.org/installation.html).
 
@@ -73,3 +73,7 @@ Get the Superset version from [Superset repository](https://github.com/apache/in
 #### Is the default password safe?
 
 Superset Cloud Installer use the random password solution, every installation have different password, that mean your password is different from other users
+
+#### How long does Superset initiation completed when I deploy the image?
+
+Need more time 5 minutesm, otherwise you may get the abnormal interface
