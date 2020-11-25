@@ -1,2 +1,2 @@
-superset_version: "0.37.2"
+superset_version: "0.38.0"
 superset_download_url: "https://github.com/apache/incubator-superset/archive/{{superset_version}}.zip"
