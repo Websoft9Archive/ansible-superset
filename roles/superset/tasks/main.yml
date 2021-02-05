@@ -8,13 +8,6 @@
 - name: delete old installfiles
   shell: rm -rf /data/wwwroot/*
   
-- name: Create Superset-data directory
-  file:
-    path: /data/wwwroot/superset_data
-    state: directory
-    owner: superset
-    group: superset
-
 - name: Download and unarchive Superset
   unarchive:
     src: "{{superset_download_url}}"
@@ -22,10 +15,17 @@
     remote_src: yes
     
 - name: Rename Superset
-  shell: if [ $( ls | grep "incubator-superset") ]; then mv incubator-superset* superset; fi
+  shell: if [ $( ls | grep "superset") ]; then mv *superset* superset; fi
   args:
     chdir: /data/wwwroot
 
+- name: Create Superset-data directory
+  file:
+    path: /data/wwwroot/superset_data
+    state: directory
+    owner: superset
+    group: superset
+    
 #2 Install by OS_family
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
