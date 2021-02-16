@@ -48,7 +48,7 @@ Follow our [Superset image](https://apps.websoft9.com/superset) for installation
 
 ## Documentation
 
-To get information about initial installation, default username and password, HTTPS, SMTP, Backup, Upgrade and more, please view **Graylog Administrator Guide** ([English](https://support.websoft9.com/docs/superset) | [简体中文](https://support.websoft9.com/docs/superset/zh))
+To get information about initial installation, default username and password, HTTPS, SMTP, Backup, Upgrade and more, please view **Superset Administrator Guide** ([English](https://support.websoft9.com/docs/superset) | [简体中文](https://support.websoft9.com/docs/superset/zh))
 
 ## Changelog
 
