@@ -30,12 +30,18 @@
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
 
-# network outer
-- name: network outer
+- name: Open network outer
   lineinfile:
       dest: /data/wwwroot/superset/docker-compose.yml
       regexp: '      - "127.0.0.1:5432:5432"'
       line: '      - "5432:5432"'
+      backrefs: yes
+      
+- name: Change superset-image flag
+  lineinfile:
+      dest: /data/wwwroot/superset/docker-compose.yml
+      regexp: 'x-superset-image: &superset-image apache/superset:latest-dev'
+      line: 'x-superset-image: &superset-image apache/superset:latest'
       backrefs: yes
   
 #3 docker-compose add phppgadmin and config
