@@ -7,15 +7,12 @@
 
 - name: delete old installfiles
   shell: rm -rf /data/wwwroot/*
-  
-- name: Download and unarchive Superset
-  unarchive:
-    src: "{{superset_download_url}}"
-    dest: /data/wwwroot
-    remote_src: yes
-    
-- name: Rename Superset
-  shell: if [ $( ls | grep "superset") ]; then mv *superset* superset; fi
+
+- name: Git clone latest source
+  shell: |
+    git clone https://github.com/apache/superset.git
+    cd superset
+    docker-compose -f docker-compose-non-dev.yml up
   args:
     chdir: /data/wwwroot
 
@@ -29,27 +26,6 @@
 #2 Install by OS_family
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
-
-- name: Open network outer
-  lineinfile:
-      dest: /data/wwwroot/superset/docker-compose.yml
-      regexp: '      - "127.0.0.1:5432:5432"'
-      line: '      - "5432:5432"'
-      backrefs: yes
-      
-- name: Change superset-image flag
-  lineinfile:
-      dest: /data/wwwroot/superset/docker-compose.yml
-      regexp: 'x-superset-image: &superset-image apache/superset:latest-dev'
-      line: 'x-superset-image: &superset-image apache/superset:latest'
-      backrefs: yes
-  
-#3 docker-compose add phppgadmin and config
-- name: Docker compose Superset
-  shell: |
-    docker-compose up -d
-  args:
-    chdir: /data/wwwroot/superset
 
 #4 configure Superset
 - name: Create soft link
