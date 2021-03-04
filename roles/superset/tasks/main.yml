@@ -13,7 +13,6 @@
     cd /data/wwwroot
     git clone https://github.com/apache/superset.git
     cd superset
-    git checkout latest
     docker-compose -f docker-compose-non-dev.yml up -d
 
 - name: Create Superset-data directory
