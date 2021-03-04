@@ -27,8 +27,6 @@
   shell:
     ln -sf /var/lib/docker/volumes /data/wwwroot/superset_data
     ln -sf /data/wwwroot/superset/docker  /data/wwwroot/superset_data
-    ln -sf /data/wwwroot/superset/postgre  /data/wwwroot/superset_data
-    ln -sf /data/wwwroot/superset/postgre-frontend  /data/wwwroot/superset_data
 
 #5 version output
 - name: Check Superset Version
