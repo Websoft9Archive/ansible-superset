@@ -12,6 +12,7 @@
   shell: |
     cd /data/wwwroot
     git clone https://github.com/apache/superset.git
+    git checkout latest
     cd superset
     docker-compose -f docker-compose-non-dev.yml up -d
 
