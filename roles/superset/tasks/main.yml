@@ -5,16 +5,15 @@
     shell: /usr/sbin/nologin
     create_home: no
 
-- name: delete old installfiles
+- name: Delete old installfiles
   shell: rm -rf /data/wwwroot/*
 
-- name: Git clone latest source
+- name: Git clone latest source and start superset container
   shell: |
+    cd /data/wwwroot
     git clone https://github.com/apache/superset.git
     cd superset
     docker-compose -f docker-compose-non-dev.yml up
-  args:
-    chdir: /data/wwwroot
 
 - name: Create Superset-data directory
   file:
@@ -22,10 +21,6 @@
     state: directory
     owner: superset
     group: superset
-    
-#2 Install by OS_family
-- name: Install this role on {{ansible_os_family}}
-  include: "{{ansible_os_family}}.yml"
 
 #4 configure Superset
 - name: Create soft link
