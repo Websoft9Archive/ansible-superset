@@ -18,9 +18,7 @@
     
 - name: Git clone latest source and start superset container
   shell: |
-    cd /data/wwwroot
-    git clone https://github.com/apache/superset.git
-    cd superset
+    cd /data/wwwroot/superset
     rm -f docker-compose-non-dev.yml
     wget https://raw.githubusercontent.com/qiaofeng1227/cello/master/docker-compose-non-dev.yml
     docker-compose -f docker-compose-non-dev.yml up -d
