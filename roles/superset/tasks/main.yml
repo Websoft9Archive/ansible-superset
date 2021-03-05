@@ -6,7 +6,9 @@
     create_home: no
 
 - name: Delete old installfiles
-  shell: rm -rf /data/wwwroot/*
+  shell: |
+    rm -rf /data/wwwroot/superset_data
+    rm -rf /data/wwwroot/superset
 
 - name: Git clone latest source and start superset container
   shell: |
