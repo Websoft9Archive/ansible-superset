@@ -30,6 +30,8 @@ init_docker:
     db_password: "superset"
     service_after: "docker.service"
     compose_path: "/data/wwwroot/superset/docker-compose-non-dev.yml" 
+    volumes: 
+      - /var/lib/docker/volumes
     compose_commands: 
       - sudo sed -i "s/DATABASE_PASSWORD=superset/DATABASE_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env
       - sudo sed -i "s/POSTGRES_PASSWORD=superset/POSTGRES_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env
