@@ -9,11 +9,18 @@ nginx_reverse_proxy_port: "8088"
 
 # docker
 docker_applications:
-  - phppgadmin
+  - pgadmin
  
 docker_compose_host: "172.17.0.1"
   
 init_docker:
+  pgadmin:
+    admin_username: user@domain.com
+    admin_password: "SuperSecret"
+    service_after: "docker.service"
+    compose_path: "/data/apps/pgadmin/docker-compose.yml"
+    compose_commands:
+      - sudo sed -i "s/SuperSecret/$new_password/g" /data/apps/pgadmin/docker-compose.yml
   superset:
     admin_username: admin  
     admin_password: "admin"
@@ -24,6 +31,6 @@ init_docker:
     service_after: "docker.service"
     compose_path: "/data/wwwroot/superset/docker-compose-non-dev.yml" 
     compose_commands: 
+      - sudo sed -i "s/DATABASE_PASSWORD=superset/DATABASE_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env-non-dev
+      - sudo sed -i "s/POSTGRES_PASSWORD=superset/POSTGRES_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env-non-dev
       - sudo sed -i 's/ADMIN_PASSWORD="admin"/ADMIN_PASSWORD="'$new_password'"/g' /data/wwwroot/superset/docker/docker-init.sh
-
-    
