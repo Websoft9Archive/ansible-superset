@@ -1,6 +1,5 @@
 # global
 region: "0"
-common_os_support: ["CentOS", "Ubuntu", "Amazon"]
 
 nginx_certbot: true
 nginx_appname: "superset"
@@ -10,9 +9,8 @@ nginx_reverse_proxy_port: "8088"
 # docker
 docker_applications:
   - pgadmin
- 
-docker_compose_host: "172.17.0.1"
-  
+
+
 init_docker:
   pgadmin:
     admin_username: user@domain.com

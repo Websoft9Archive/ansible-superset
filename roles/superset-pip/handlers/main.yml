@@ -1,3 +1,0 @@
----
-- name: restart superset
-  service: name=superset state=restarted enabled=yes

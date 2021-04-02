@@ -1,40 +1,51 @@
-#1 Prepare for install
-- name: Create Superset User
-  user:
-    name: superset
-    shell: /usr/sbin/nologin
-    create_home: no
+---
+- name: Delete superset dir for sec_installation
+  shell: rm -rf /data/wwwroot/superset
 
-- name: Delete old installfiles
-  shell: |
-    rm -rf /data/wwwroot/superset_data
-    rm -rf /data/wwwroot/superset
-
-- name: Git clone latest source and start superset container
-  shell: |
-    cd /data/wwwroot
-    git clone https://github.com/apache/superset.git
-    cd superset
-    sed -i '/container_name: superset_db/a \ \ \ \ ports: \n\ \ \ \ \ \ - "5432:5432"' docker-compose-non-dev.yml
-    docker-compose -f docker-compose-non-dev.yml up -d
-
-- name: Create Superset-data directory
+- name: Create dir for superset
   file:
-    path: /data/wwwroot/superset_data
+    path: "{{item}}"
     state: directory
-    owner: superset
-    group: superset
+    recurse: yes
+  loop: 
+    - /data/db/postgresql
+    - /data/db/redis
 
-#4 configure Superset
-- name: Create soft link
-  shell:
-    ln -sf /var/lib/docker/volumes /data/wwwroot/superset_data
-    ln -sf /data/wwwroot/superset/docker  /data/wwwroot/superset_data
+- name: Clone superset in Websoft9 
+  git:
+    repo: "{{superset_git_url}}"
+    dest: "/data/wwwroot/superset"
+    version: dev
 
-#5 version output
-- name: Check Superset Version
+- name: Run the docker-compose
   shell: |
+    docker-compose up -d
+    sleep 30
+  args:
+    chdir: /data/wwwroot/superset
+
+- name: Create a Apache Log symbolic link
+  file:
+    src: '{{item.src}}'
+    dest: '{{item.dest}}'
+    state: link
+    force: yes
+  with_items:
+  - {src: /data/wwwroot/superset/postgresql_data/,dest: /data/db/postgresql/data}
+  - {src: /data/wwwroot/superset/redis/,dest: /data/db/redis/data}
+
+# check superset,postgresql,redis version and service state
+- name: Check superset,postgresql,redis version
+  shell: >
     sudo echo -e "superset_version: `docker exec -it superset_app /bin/bash -c 'cat /app/superset-frontend/package.json |grep version |sed -n 1p |cut -d: -f 2'`\n" |sudo tee -a /data/logs/install_version.txt
     sudo echo -e "postgres_version: `docker exec -it superset_db /bin/bash -c 'psql -V |cut -d " " -f 3'`\n" |sudo tee -a /data/logs/install_version.txt
     sudo echo -e "redis_version: `docker exec -it superset_cache /bin/bash -c '/usr/local/bin/redis-server -v |cut -d " " -f 3 |cut -d "=" -f 2'`\n" |sudo tee -a /data/logs/install_version.txt
+    
+- name: Check superset Service
+  shell: sudo docker ps | grep superset
+  register: check_superset_service
+  notify: check_superset_service
+
+    
+
 
