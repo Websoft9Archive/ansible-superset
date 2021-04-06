@@ -15,7 +15,6 @@
   git:
     repo: "{{superset_git_url}}"
     dest: "/data/wwwroot/superset"
-    version: dev
 
 - name: Run the docker-compose
   shell: |
