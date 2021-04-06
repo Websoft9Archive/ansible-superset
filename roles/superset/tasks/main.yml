@@ -31,7 +31,7 @@
     state: link
     force: yes
   with_items:
-  - {src: /data/wwwroot/superset/postgresql_data/,dest: /data/db/postgresql/data}
+  - {src: /data/wwwroot/superset/postgresql/,dest: /data/db/postgresql/data}
   - {src: /data/wwwroot/superset/redis/,dest: /data/db/redis/data}
 
 # check superset,postgresql,redis version and service state
