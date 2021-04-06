@@ -42,7 +42,7 @@
     sudo echo -e "redis_version: `docker exec -it superset_cache /bin/bash -c '/usr/local/bin/redis-server -v |cut -d " " -f 3 |cut -d "=" -f 2'`\n" |sudo tee -a /data/logs/install_version.txt
     
 - name: Check superset Service
-  shell: sudo docker ps | grep superset
+  shell: sudo docker ps | grep superset_app
   register: check_superset_service
   notify: check_superset_service
 
