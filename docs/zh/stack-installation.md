@@ -22,6 +22,9 @@
 4. 通过右上角国旗图标设置你所需的语言 
    ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-setlanguagech-websoft9.png)
 
+## Superset 入门向导
+
+下面以创建一个项目作为范例来介绍 Superset 的基本使用入门：
 
 > 需要了解更多 Superset 的使用，请参考官方文档：[Getting Started with Superset using Docker](https://github.com/apache/incubator-superset/blob/master/docker/README.md)
 

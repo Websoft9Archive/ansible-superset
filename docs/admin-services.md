@@ -31,7 +31,7 @@ sudo docker restart superset_redis_1
 ### phpPgAdmin
 
 ```shell
-sudo docker start phppgadmin
-sudo docker stop phppgadmin
-sudo docker restart phppgadmin
+sudo docker start pgadmin
+sudo docker stop pgadmin
+sudo docker restart pgadmin
 ```
