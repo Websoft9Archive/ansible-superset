@@ -24,7 +24,25 @@
 
 ## Superset 入门向导
 
-下面以创建一个项目作为范例来介绍 Superset 的基本使用入门：
+下面以连接一个已经存在的MySQL数据库和导入其中一个数据表作为范例来介绍 Superset 的基本使用入门：
+
+1. 登录后，依次打开：【Data】>【Databases】
+![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-database-websoft9.png)
+
+2. 点击右上角追加【数据库】，输入要连接的数据地址、端口、库名以及驱动，输入方法参照[连接数据库](https://docs.sqlalchemy.org/en/13/core/engines.html)
+![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-connect-websoft9.png)
+
+3. 点击确认，追加的数据库显示在列表中
+![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-connect-websoft9.png)
+
+4. 菜单栏选择：【Data】>【Datesets】
+![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-dataset-websoft9.png)
+
+5. 点击追加Datasets，依次选择库、SCHEMA、Table，点击追加
+![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-selecttable-websoft9.png)
+
+6. 新追加的表已经显示在Datasets一览了
+![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-datalist-websoft9.png)
 
 > 需要了解更多 Superset 的使用，请参考官方文档：[Getting Started with Superset using Docker](https://github.com/apache/incubator-superset/blob/master/docker/README.md)
 
