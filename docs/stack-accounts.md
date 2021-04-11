@@ -10,7 +10,6 @@ These accounts are required for Superset image installation and configuration
 
 * Superset administrator username: `admin`
 * Superset administrator password: stored in the file of your server */credentials/password.txt*
-  > If there no password.txt exist, the administrator password is `admin`
 
 ## PostgreSQL
 

@@ -10,16 +10,16 @@ If you have completed the Superset deployment on Cloud Platform, the following s
 
 ## Superset Installation Wizard
 
-1. Using local Chrome or Firefox to visit the URL *http://DNS* or *http://Internet IP*, enter login page of Superset
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-login-websoft9.png)
+1. Using local browser to access URL *http://DNS* or *http://Instance's Internet IP*, enter login page
+   ![superset login page](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-login-websoft9.png)
 
 2. Log in to Superset web console([Don't have password?](/stack-accounts.md#superset))  
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-console-websoft9.png)
+   ![superset login page](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-console-websoft9.png)
 
-3. Set you new password from: 【Super Admin】>【Profile】
+3. Modiyf your password by: 【Super Admin】>【Profile】
    ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-resetpw-websoft9.png)
 
-> More useful Superset guide, please refer to [Getting Started with Superset using Docker](https://github.com/apache/incubator-superset/blob/master/docker/README.md)
+> More useful Superset guide, please refer to [Superset documentation](https://superset.apache.org/docs/intro)
 
 ## Q&A
 

@@ -15,7 +15,7 @@ Follow is the sample using **SendGrid's SMTP Service** to configure sending mail
    SMTP username: websoft9smtp
    SMTP password: #fdfwwBJ8f    
    ```
-2. Edit [Superset configuration file](/stack-components.md#superset)([refer to docs](https://superset.incubator.apache.org/installation.html?highlight=smtp)）
+2. Add the below SMTP Configuration section to [Superset configuration file](/stack-components.md#superset) correct the items
    ```
    # smtp server configuration
    EMAIL_NOTIFICATIONS = True  # all the emails are sent using dryrun
@@ -29,7 +29,7 @@ Follow is the sample using **SendGrid's SMTP Service** to configure sending mail
    ```
 3. Saved and restart Superset container
    ```
-   sudo docker restart superset_postgre_1
+   sudo docker restart superset_app
    ```
 
 More SMTP Service(Gmail, Hotmail, QQ mail, Yahoo mail, SendGrid and so on)  settings or Issues with SMTP, please refer to Websoft9's *[SMTP Guide](https://support.websoft9.com/docs/faq/tech-smtp.html)*

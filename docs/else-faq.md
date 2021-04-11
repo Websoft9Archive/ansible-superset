@@ -2,15 +2,27 @@
 
 ####  Does Superset support multiple languages?
 
-Yes
+Yes, but dev version only English
+
+#### How can I get all service for this solution?
+
+```
+sudo docker ps -a
+```
+
+#### How can I running Superset container as root user?
+
+```
+docker exec -it --user root superset_app bash
+```
 
 #### Can I reset password of Superset by command?
 
-no
+No, you should modify it by Superset console
 
 #### If there is no domain name, can I deploy Superset?
 
-Yes, visit Superset by *http://Internet IP*
+Yes, visit Superset by *http://Instance's Internet IP*
 
 #### What is the password for the database root user?
 
@@ -18,7 +30,7 @@ The password is stored in the server related file: `/credentials/password.txt`
 
 #### Is there a web-base GUI database management tools?
 
-Yes, pgAdmin is on it, visit by *http://Internet IP:9090*
+Yes, pgAdmin is on it, visit by *http://Instance's Internet IP:9090*
 
 #### Is it possible to modify the source path of Superset?
 
@@ -29,7 +41,7 @@ No
 Change owner(group) or permissions like below:
 
 ```shell
-chown -R apache.apache /data/wwwroot/superset
+chown -R superset.superset /data/wwwroot/superset
 find /data/wwwroot/superset -type d -exec chmod 750 {} \;
 find /data/wwwroot/superset -type f -exec chmod 640 {} \;
 ```

@@ -6,7 +6,7 @@
 
 #### 如何查看错误日志？
 
-通过 `sudo docker logs superset_postgre_1` 查看 Superset 容器错误日志
+通过 `sudo docker logs superset_app` 查看 Superset 容器错误日志
 
 #### Superset 运行报错？
 
@@ -19,4 +19,14 @@ docker-compose up -d
 ```
 
 如果仍然报错，请检查数据库连接、持久化存储挂载是否准确无误。
+
+#### Superset 容器中安装数据库驱动报错？
+
+错误信息：ERROR: Could not install packages due to an OSError: [Errno 13] Permission denied: '/home/superset'
+Check the permissions.  
+
+问题原因：权限不足  
+
+解决方案：以 root 用户进入容器 `docker exec -it --user root superset_app bash`，然后再安装驱动  
+
 

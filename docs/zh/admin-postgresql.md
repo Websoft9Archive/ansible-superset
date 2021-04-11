@@ -29,7 +29,7 @@ Superset 预装包中内置 PostgreSQL 容器以及可视化管理工具 pgAdmin
 2. 进入 postgresql 容器操作界面
 
    ```
-   docker exec -it superset_db_1 psql -U superset
+   docker exec -it superset_db psql -U superset
    ```
 3. 接下来可以使用命令操作 PostgreSQL 
 

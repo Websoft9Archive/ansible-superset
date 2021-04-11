@@ -50,6 +50,6 @@ Manual backup for application is based on the **Exporting source code and databa
 The general manual backup operation steps are as follows:
 
 1. Just compression and download the entire */data/wwwroot/superset_data** directory by SFTP 
-2. Export PostgreSQL database by [phpPgAdmin](/admin-postgresql.md)
+2. Export PostgreSQL database by [pgAdmin](/admin-postgresql.md)
 3. Put the source code file and database file in the same folder, named according to the date
 4. Backup completed

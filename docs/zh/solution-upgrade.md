@@ -22,16 +22,26 @@ yum update -y --skip-broken
 > 本部署包已预配置一个用于自动更新的计划任务。如果希望去掉自动更新，请删除对应的Cron
 
 
-## Superset升级
+## Superset 升级
 
-Superset 升级是通过重新下载官方 Github 项目后，重新运行容器实现，具体如下：
+Superset 采用 Docker 部署，其升级流程：拉取镜像 > 删除容器 > 重建容器
 
-1. 登录到云服务器，更新 git 项目
+> 升级之前请完成服务器的快照备份，以防不测。
+
+1. 使用 SSH 登录服务，进入到 Superset 目录后，拉取最新版本镜像
    ```
    cd /data/wwwroot/superset
-   git pull
+   docker-compose pull
    ```
-2. 重新运行容器
+   > 系统会自动拉取最新版镜像，如果没有镜像可拉取，则无需更新
+
+2. 停止并删除当前的 Superset 容器
+
+   ```
+   docker-compose down -v
+   ```
+
+3. 重新创建 Superset 容器
    ```
    docker-compose up -d
    ```

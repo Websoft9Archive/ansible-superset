@@ -10,13 +10,23 @@ Superset 预装包包含 Superset 运行所需一序列支撑软件（简称为�
 
 本项目出 Nginx 之外，所有组件均基于 Docker 安装，运行 `docker ps` 命令查看所有组件：
 
+```
+CONTAINER ID   IMAGE                           COMMAND                  CREATED              STATUS                                 PORTS                               NAMES
+453f04935734   apache/superset:latest          "/usr/bin/docker-ent…"   About a minute ago   Up About a minute (healthy)            0.0.0.0:8088->8088/tcp              superset_app
+5477e7693ef3   apache/superset:latest          "/usr/bin/docker-ent…"   About a minute ago   Up About a minute (healthy)            8088/tcp                            superset_worker
+d6670fa1bc11   apache/superset:latest          "/usr/bin/docker-ent…"   About a minute ago   Up About a minute (healthy)            8088/tcp                            superset_worker_beat
+17689f5d6ebb   postgres:10                     "docker-entrypoint.s…"   About a minute ago   Up About a minute                      0.0.0.0:5432->5432/tcp              superset_db
+06bf52f4b856   redis:3.2                       "docker-entrypoint.s…"   About a minute ago   Up About a minute                      127.0.0.1:6379->6379/tcp            superset_cache
+```
+
 ### Superset
 
 Superset 源码目录：*/data/wwwroot/superset*  
-Superset 数据目录：*/data/wwwroot/superset_data*  
-Superset 配置文件：*/data/wwwroot/superset/docker/pythonpath_dev/superset_config.py*  
+Superset 数据目录：*/data/wwwroot/superset_home*  
+Superset 配置目录：*/data/wwwroot/superset/docker*  
+Superset 配置文件： */data/wwwroot/superset/docker/pythonpath_dev/superset_config.py*  
 
-Superset 数据目录即持久数据卷，包括：数据库数据、配置文件、环境变量、初始化脚本等
+> 配置目录包括数据库连接信息、[Superset 配置文件](https://github.com/apache/superset/blob/master/superset/config.py)等
 
 ### Nginx
 
@@ -27,7 +37,13 @@ Nginx 伪静态规则目录： */etc/nginx/conf.d/rewrite*
 
 ### PostgreSQL
 
-PostgreSQL 数据持久存储：**/data/wwwroot/superset_data/volumes/superset_db_home*  *
+PostgreSQL 主目录：*/data/wwwroot/superset/postgresql*  
+
+> 包含所有 PostgreSQL 数据文件和配置文件
+
+#### pgAdmin
+
+pgAdmin 主目录：*/data/apps/pgadmin*  
 
 ### Docker
 
@@ -53,7 +69,7 @@ Docker Compose 配置目录 */data/wwwroot/superset*
 | TCP | 8088 | Superset 端口 | 可选 |
 | TCP | 80 | 通过 HTTP 访问 Superset | 可选 |
 | TCP | 443 | 通过 HTTPS 访问 Superset | 可选 |
-| TCP | 9090 | PostgreSQL 可视化管理工具 phpPgAdmin | 可选 |
+| TCP | 9090 | PostgreSQL 可视化管理工具 pgAdmin | 可选 |
 
 ## 版本号
 
@@ -71,4 +87,10 @@ nginx -V
 
 # Docker Version
 docker -v
+
+# Superset Version
+docker exec -it superset_app /bin/bash -c 'cat /app/superset-frontend/package.json |grep version'
+
+# PostgreSQL version
+docker exec -it superset_db /bin/bash -c 'psql -V'
 ```
