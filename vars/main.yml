@@ -38,7 +38,5 @@ init_docker:
       - sudo sed -i "s/POSTGRES_PASSWORD=superset/POSTGRES_PASSWORD=$new_password/g" /data/wwwroot/superset/docker/.env-non-dev
       - sudo sed -i 's/ADMIN_PASSWORD="admin"/ADMIN_PASSWORD="'$new_password'"/g' /data/wwwroot/superset/docker/docker-init.sh
     volumes:
-      - /data/wwwroot/superset/postgresql
-      - /data/wwwroot/superset/redis
-      - /data/wwwroot/superset/superset_home
+      - /data/wwwroot/superset/volumes
  

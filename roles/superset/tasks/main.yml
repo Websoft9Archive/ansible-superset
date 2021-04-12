@@ -9,6 +9,7 @@
     recurse: yes
   loop: 
     - /data/db/postgresql
+    - /data/wwwroot/superset/volumes
     - /data/db/redis
 
 - name: Clone superset in Websoft9 
@@ -30,8 +31,8 @@
     state: link
     force: yes
   with_items:
-  - {src: /data/wwwroot/superset/postgresql/,dest: /data/db/postgresql/data}
-  - {src: /data/wwwroot/superset/redis/,dest: /data/db/redis/data}
+  - {src: /data/wwwroot/superset/volumes/postgresql/,dest: /data/db/postgresql/data}
+  - {src: /data/wwwroot/superset/volumes/redis/,dest: /data/db/redis/data}
 
 # check superset,postgresql,redis version and service state
 - name: Check superset,postgresql,redis version
