@@ -2,6 +2,11 @@
 - name: Delete superset dir for sec_installation
   shell: rm -rf /data/wwwroot/superset
 
+- name: Clone superset in Websoft9 
+  git:
+    repo: "{{superset_git_url}}"
+    dest: "/data/wwwroot/superset"
+
 - name: Create dir for superset
   file:
     path: "{{item}}"
@@ -11,12 +16,7 @@
     - /data/db/postgresql
     - /data/wwwroot/superset/volumes
     - /data/db/redis
-
-- name: Clone superset in Websoft9 
-  git:
-    repo: "{{superset_git_url}}"
-    dest: "/data/wwwroot/superset"
-
+    
 - name: Run the docker-compose
   shell: |
     docker-compose -f docker-compose-production.yml up -d
