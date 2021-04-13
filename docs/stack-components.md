@@ -9,12 +9,12 @@ All components installed on Docker except for **Nginx**..
 Use **SSH** to connect Server and run the command `docker ps`, you can list all containers:
 
 ```
-CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS                          PORTS                              NAMES
-1fb7b1a37109        superset_postgre          "/usr/bin/docker-ent…"   3 hours ago         Up 3 hours (healthy)            8080/tcp, 0.0.0.0:8088->8088/tcp   superset_postgre_1
-195016610b1e        superset_postgre-worker   "/usr/bin/docker-ent…"   3 hours ago         Restarting (1) 47 seconds ago                                      superset_postgre-worker_1
-ca55ed7b73bf        postgres:10               "docker-entrypoint.s…"   3 hours ago         Up 3 hours                      127.0.0.1:5432->5432/tcp           superset_db_1
-0d6b6c901f6a        redis:3.2                 "docker-entrypoint.s…"   3 hours ago         Up 3 hours                      127.0.0.1:6379->6379/tcp           superset_redis_1
-7746c6e4aa7d        dockage/phppgadmin        "/sbin/entrypoint ap…"   24 hours ago        Up 6 hours                      443/tcp, 0.0.0.0:9090->80/tcp      phppgadmin
+CONTAINER ID   IMAGE                           COMMAND                  CREATED              STATUS                                 PORTS                               NAMES
+453f04935734   apache/superset:latest          "/usr/bin/docker-ent…"   About a minute ago   Up About a minute (healthy)            0.0.0.0:8088->8088/tcp              superset_app
+5477e7693ef3   apache/superset:latest          "/usr/bin/docker-ent…"   About a minute ago   Up About a minute (healthy)            8088/tcp                            superset_worker
+d6670fa1bc11   apache/superset:latest          "/usr/bin/docker-ent…"   About a minute ago   Up About a minute (healthy)            8088/tcp                            superset_worker_beat
+17689f5d6ebb   postgres:10                     "docker-entrypoint.s…"   About a minute ago   Up About a minute                      0.0.0.0:5432->5432/tcp              superset_db
+06bf52f4b856   redis:3.2                       "docker-entrypoint.s…"   About a minute ago   Up About a minute                      127.0.0.1:6379->6379/tcp            superset_cache
 ```
 
 ## Path
@@ -23,9 +23,10 @@ ca55ed7b73bf        postgres:10               "docker-entrypoint.s…"   3 hours
 
 Superset repository directory: */data/wwwroot/superset*  
 Superset data directory: */data/wwwroot/superset_data*  
+Superset configuration directory: */data/wwwroot/superset/docker*  
 Superset configuration file: */data/wwwroot/superset/docker/pythonpath_dev/superset_config.py*  
 
-Superset data directory is the volumes for data long-time storage, includes: *database data, Superset configuration file, environment variable, init script.*
+> Superset configuration directory includes: *configuration files, env, init script.*
 
 ### Nginx
 
@@ -35,7 +36,13 @@ Nginx log file: */var/log/nginx*
 
 ### PostgreSQL
 
-PostgreSQL data storage: */data/wwwroot/superset_data/volumes/superset_db_home*  
+PostgreSQL directory: */data/wwwroot/superset/postgresql*  
+
+> PostgreSQL directory includes data and configuration files
+
+#### pgAdmin
+
+pgAdmin directory: */data/apps/pgadmin*  
 
 ### Docker
 
@@ -53,11 +60,10 @@ You can run the cmd `netstat -tunlp` to list all used ports, and we list the fol
 | --- | --- | --- | --- |
 | HTTP | 8161 | HTTP requests for Superset Console| Required |
 | HTTPS | 5672 | epmd | Optional |
-| TCP | 8088 | Superset 端口 | 可选 |
-| TCP | 80 | 通过 HTTP 访问 Superset | 可选 |
-| TCP | 443 | 通过 HTTPS 访问 Superset | 可选 |
-| TCP | 9090 | PostgreSQL 可视化管理工具 phpPgAdmin | 可选 |
-
+| TCP | 8088 | Superset | Optional |
+| TCP | 80 | HTTP access Superset | Optional |
+| TCP | 443 | HTTPS access Superset | Optional |
+| TCP | 9090 | PostgreSQL Web-GUI tool | Optional |
 
 ## Version
 
@@ -75,4 +81,10 @@ nginx -V
 
 # Docker Version
 docker -v
+
+# Superset Version
+docker exec -it superset_app /bin/bash -c 'cat /app/superset-frontend/package.json |grep version'
+
+# PostgreSQL version
+docker exec -it superset_db /bin/bash -c 'psql -V'
 ```

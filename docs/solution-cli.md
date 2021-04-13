@@ -5,7 +5,11 @@ Superset have CLI `superset` for administrator.
 Use **SSH** to login Server, and run the following command to Superset container
 
 ```
-docker exec -it superset_superset_1 /bin/bash
+# Login to Superset container
+docker exec -it superset_app bash
+
+# Run the Superset CLI command
+superset
 ```
 
 Main options and commands:  

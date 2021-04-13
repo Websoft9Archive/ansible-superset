@@ -2,10 +2,14 @@
 
 Superset 提供了强大的的命令行工具 `superset`
 
-使用 **SSH** 登录到云服务器，运行如下命令登录到 Superset 容器，即可使用 CLI
+使用 **SSH** 登录到云服务器，登录到容器后即可使用 CLI  
 
 ```
-docker exec -it superset_superset_1 /bin/bash
+# 登录到 Superset 容器
+docker exec -it superset_app bash
+
+# 运行 CLI 命令
+superset
 ```
 
 主要参数如下：

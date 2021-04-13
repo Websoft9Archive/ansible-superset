@@ -23,30 +23,48 @@
 
 ## 配置文件
 
-Superset 配置文件 [superset_config.py](https://superset.incubator.apache.org/installation.html?highlight=smtp#configuration) 是自定义配置 Superset 功能的主要入口。
+Superset 配置文件 [superset_config.py](https://github.com/apache/superset/blob/master/superset/config.py) 是自定义配置 Superset 功能的主要入口。
 
 ## 安装数据库驱动
 
-虽然 Superset 默认支持数十种数据库的分析，但除了SQLite（它是Python标准库的一部分）外，Superset 默认并没有默认安装所有数据库的驱动（连接程序）。  
+Superset 支持数十种数据库，但 Superset Docker 镜像默认并没有安装[数据库的驱动](https://superset.apache.org/docs/databases/installing-database-drivers)（连接程序）。  
 
-范例：  
+因此，需要用户进入到容器后手动安装，具体如下：
 
 ```
-sudo docker exec -it superset_postgre_1 bash
+# 进入 Superset 容器，以 root 身份运行命令
+docker exec -it --user root superset_app bash
 
-# MySQL
+# 范例：安装 MySQL 驱动
 pip install mysqlclient
 
-# PostgreSQL
+# 范例：安装 PostgreSQL 驱动
 pip install psycopg2	
-
-# Hive
-pip install pyhive
-
-#Redshift
-pip install sqlalchemy-redshift
 ```
 
-参考官方[Database dependencies](https://superset.incubator.apache.org/installation.html?highlight=pip%20install%20mysqlclient#database-dependencies)
+更多驱动参考官方[Database dependencies](https://superset.apache.org/docs/databases/installing-database-drivers)
 
+## 重置密码
+
+常用的 Superset 重置密码相关的操作主要有修改密码和找回密码两种类型：
+
+### 修改密码
+
+登录 Superset 后台，修改密码：【Settings】>【User】>【Info】
+
+![Superset 修改密码](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-resetpw-websoft9.png)
+
+### 找回密码
+
+如果用户忘记了密码，需要通过修改数据库中的数据表的方式找回：
+
+1. 使用 **SSH**连接服务器，运行如下命令连接数据库
+   ```
+   docker exec -it superset_db psql -U superset
+   ```
+
+2. 在**数据库命令模式下**，运行如下的 SQL 语句后，用户 admin 的密码就被设置为`admin123`。
+   ```
+   update ab_user set password='pbkdf2:sha256:150000$w8vfDHis$b9c8fa353137417946766ed87cf20510da7e1e3a7b79eef37426330abef552bf' where username='admin';
+   ```
 

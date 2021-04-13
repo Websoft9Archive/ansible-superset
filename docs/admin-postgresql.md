@@ -1,6 +1,6 @@
 # PostgreSQL
 
-Superset deployment package includes PostgreSQL and GUI tools phpPgAdmin, refer to these steps to use it:
+This deployment includes PostgreSQL and GUI tools pgAdmin, refer to these steps to use it:
 
 ### Manage PostgreSQL by GUI
 
@@ -20,14 +20,13 @@ Superset deployment package includes PostgreSQL and GUI tools phpPgAdmin, refer 
 
 ### Manage PostgreSQL by cli
 
-1. Use the SSH to connect your Server of Superset, then run the command `docker ps` to list all containers
-  ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/awx/awx-getcontainerid-websoft9.png)
+1. Use the SSH to connect your instacne, then run the command `docker ps` to list all containers
 
-2. Get the container ID or Name of PostgreSQL, and use the following command to login **postgresql** container
+2. Get the container ID or Name of PostgreSQL, and access to **postgresql** container
 
    ```
-   docker exec -it superset_db_1 psql -U superset
+   docker exec -it superset_db psql -U superset
    ```
-3. You can use any PostgreSQL commands if you have connect to **superset_db_1** container successfully
+3. You can use any PostgreSQL commands if you have connect to **superset_db** container successfully
 
-> Websoft9 provide *[PostgreSQL guide](https://support.websoft9.com/docs/postgresql/admin-phppgadmin.html)* for more useful skills of PostgreSQL, includes: modify password, create user, import/export data, enable or disable remote visit, log configuation and so on.
+> Websoft9 provide *[PostgreSQL guide](https://support.websoft9.com/docs/postgresql/admin-pgAdmin.html)* for more useful skills of PostgreSQL, includes: modify password, create user, import/export data, enable or disable remote visit, log configuation and so on.

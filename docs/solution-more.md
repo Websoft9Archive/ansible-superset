@@ -2,31 +2,6 @@
 
 Each of the following solutions has been proven to be effective and we hope to be helpful to you.
 
-## Database dependencies
-
-Superset does not ship bundled with connectivity to databases, except for Sqlite, which is part of the Python standard library. You’ll need to install the required packages for the database you want to use as your metadata database as well as the packages needed to connect to the databases you want to access through Superset.
-
-[Here](https://superset.incubator.apache.org/installation.html?highlight=pip%20install%20mysqlclient#database-dependencies)’s a list of some of the recommended packages.
-
-Examples:    
-
-```
-sudo docker exec -it superset_postgre_1 bash
-
-# MySQL
-pip install mysqlclient
-
-# PostgreSQL
-pip install psycopg2	
-
-# Hive
-pip install pyhive
-
-#Redshift
-pip install sqlalchemy-redshift
-```
-
-
 ## Domain binding
 
 The precondition for binding a domain is that Superset can accessed by domain name.
@@ -35,7 +10,8 @@ Nonetheless, from the perspective of server security and subsequent maintenance 
 
 Superset domain name binding steps:
 
-1. Connect your Cloud Server
+1. Connect your Server by SFTP tool
+
 2. Modify [Nginx vhost configuration file](/stack-components.md#nginx), change the **server_name**'s value to your domain name
    ```text
    server
@@ -44,4 +20,55 @@ Superset domain name binding steps:
    server_name www.example.com;  # 此处修改为你的域名
    ...
    }
+   ```
+3. Restart Nginx service
+   ```
+   sudo systemctl restart nginx
+   ```
+
+
+## Install Database Drivers
+
+You’ll need to install the required packages for the database you want to use as your metadata database as well as the packages needed to connect to the databases.  
+
+The below is the command how to install drivers
+
+```
+# Access Superset container as root user
+docker exec -it --user root superset_app bash
+
+# sample1
+pip install mysqlclient
+
+# sample2
+pip install psycopg2	
+```
+
+Refer to more [Supported Databases and Dependencies](https://superset.apache.org/docs/databases/installing-database-drivers)
+
+## Resetting Password
+
+There are two main measures to reset password.
+
+### Changing password
+
+Take the steps below:
+
+Login to Superset console, open:【Settings】>【User】>【Info】 to modify password
+
+![Superset modify password](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-resetpw-websoft9.png)
+
+
+### Forgot Password
+
+Try to retrieve your password by the flowing steps:  
+
+1. Use **SSH** to connect Server, run the below command to login database
+   ```
+   docker exec -it superset_db psql -U superset
+   ```
+
+2. At the mode of **Database CLI interaction**, run the below SQL command, then you password is `admin123` now.
+   ```
+   update ab_user set password='pbkdf2:sha256:150000$w8vfDHis$b9c8fa353137417946766ed87cf20510da7e1e3a7b79eef37426330abef552bf' where username='admin';
    ```
