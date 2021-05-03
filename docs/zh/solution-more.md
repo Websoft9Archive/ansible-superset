@@ -68,7 +68,7 @@ pip install psycopg2
    update ab_user set password='pbkdf2:sha256:150000$w8vfDHis$b9c8fa353137417946766ed87cf20510da7e1e3a7b79eef37426330abef552bf' where username='admin';
    ```
 
-### 更换 Logo
+## 更换 Logo
 
 如果打算用自己的 Logo 更换 Superset 容器中默认的 Logo，具体的步骤如下：
 

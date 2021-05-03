@@ -75,7 +75,7 @@ Try to retrieve your password by the flowing steps:
 
 
 
-### Replace Logo
+## Replace Logo
 
 If you want to replace logo of Superset Container, please refer to below steps:  
 
