@@ -6,6 +6,7 @@
   git:
     repo: "{{superset_git_url}}"
     dest: "/data/wwwroot/superset"
+    version: dev
 
 - name: Create dir for superset
   file:
