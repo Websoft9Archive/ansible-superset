@@ -72,3 +72,21 @@ Try to retrieve your password by the flowing steps:
    ```
    update ab_user set password='pbkdf2:sha256:150000$w8vfDHis$b9c8fa353137417946766ed87cf20510da7e1e3a7b79eef37426330abef552bf' where username='admin';
    ```
+
+
+
+## Replace Logo
+
+If you want to replace logo of Superset Container, please refer to below steps:  
+
+1. Use **SFTP** to upload you png logo to the directory */data` 
+
+2. Rename it to *superset-logo-horiz*
+
+3. Run the below command to replace Superset official logo
+   ```
+   docker cp /data/superset-logo-horiz.png superset_app:/app/superset/static/assets/images/superset-logo-horiz.png
+   ```
+   > superset_app is the  SuperSet container name
+
+4. Refresh the Superset console

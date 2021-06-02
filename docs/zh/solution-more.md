@@ -68,3 +68,20 @@ pip install psycopg2
    update ab_user set password='pbkdf2:sha256:150000$w8vfDHis$b9c8fa353137417946766ed87cf20510da7e1e3a7b79eef37426330abef552bf' where username='admin';
    ```
 
+## 更换 Logo
+
+如果打算用自己的 Logo 更换 Superset 容器中默认的 Logo，具体的步骤如下：
+
+1. 使用 SFTP 上传你的 Logo 到服务器 /data 目录下
+
+2. 将 Logo 更名为 *superset-logo-horiz*
+
+3. 运行下面的命令，更换 Superset 官方默认 Logo
+   ```
+   docker cp /data/superset-logo-horiz.png superset_app:/app/superset/static/assets/images/superset-logo-horiz.png
+   ```
+
+   > superset_app 为 SuperSet 容器名称。
+
+4. 刷新 Superset 后台页面，查看更换效果
+

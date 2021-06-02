@@ -25,3 +25,9 @@ docker-compose up -d
 #### Install database drivers error "[Errno 13] Permission denied"?
 
 You should running Superset container by command `docker exec -it --user root superset_app bash`, then instal drivers
+
+#### I am sure use correct password, but Superset Invalid login?
+
+Error information: Invalid login, Please try again  
+Reason: need more research  
+Solution: Run the command `cd /data/wwwroot/superset && docker-compose restart` to restart all containers  

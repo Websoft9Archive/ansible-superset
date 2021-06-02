@@ -29,4 +29,8 @@ Check the permissions.
 
 解决方案：以 root 用户进入容器 `docker exec -it --user root superset_app bash`，然后再安装驱动  
 
+#### Superset 密码正确，但仍然登录失败？
 
+问题描述：用户名和密码完全正确，但 Superset 仍然登录失败，错误信息 Invalid login, Please try again  
+问题原因：暂时未知  
+解决方案：重启所有 Superset 容器 `cd /data/wwwroot/superset && docker-compose restart`  
