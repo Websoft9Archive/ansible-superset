@@ -17,9 +17,12 @@
     - /data/wwwroot/superset/volumes
     - /data/db/redis
     
-- name: Run the docker-compose
+- name: Rename and Run docker-compose
   shell: |
-    docker-compose -f docker-compose-production.yml up -d
+    rm -rf docker-compose.yml .env
+    mv docker-compose-production.yml docker-compose.yml
+    mv .env_all .env 
+    docker-compose up -d
     sleep 30
   args:
     chdir: /data/wwwroot/superset
