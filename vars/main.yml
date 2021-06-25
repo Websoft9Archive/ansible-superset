@@ -36,4 +36,6 @@ init_docker:
       - sudo sed -i 's/ADMIN_PASSWORD="admin"/ADMIN_PASSWORD="'$new_password'"/g' /data/wwwroot/superset/docker/docker-init.sh
     volumes:
       - /data/wwwroot/superset/volumes
+    commands: 
+      - sudo docker-compose -f /data/wwwroot/superset/docker-compose.yml restart
  
