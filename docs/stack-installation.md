@@ -19,6 +19,32 @@ If you have completed the Superset deployment on Cloud Platform, the following s
 3. Modiyf your password by: 【Super Admin】>【Profile】
    ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-resetpw-websoft9.png)
 
+## Superset Usage Wizard
+
+The following is an example of Superset connecting MySQL data source for analysis:
+
+1. Add data source: After logging in Superset, open:【Data】>【Databases】
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-database-websoft9.png)
+
+2. Click 【DATABASE】 in the upper right corner, enter the data server address, port, database name and driver to be connected ([More Reference](https://docs.sqlalchemy.org/en/13/core/engines.html)）  
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-connect-websoft9.png)
+   
+   > mysql://username:password@server:port/database name  
+
+3. Click 【ADD】, the added database will be displayed in the list
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-connect-websoft9.png)
+
+4. Add data table(datasets): Open the menu in turn:【Data】>【Datesets】
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-dataset-websoft9.png)
+
+5. Click Add Datasets, select datasource, SCHEMA, Table in turn, and click 【ADD】
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-selecttable-websoft9.png)
+
+6. The newly added table has been displayed in the Datasets list.
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/superset/superset-datalist-websoft9.png)
+
+7. Data source added successfully 
+
 > More useful Superset guide, please refer to [Superset documentation](https://superset.apache.org/docs/intro)
 
 ## Q&A
