@@ -1,8 +1,10 @@
 # global
 region: "0"
 
-common_install_docker: True
-docker_install: False
+common_install_docker: False
+docker_install: True
+
+nginx_login_account: ["admin", "123456"]
 
 nginx_certbot: true
 nginx_appname: "superset"
