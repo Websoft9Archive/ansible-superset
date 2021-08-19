@@ -23,7 +23,7 @@ To learn more information, please view [Installation & Configuration](https://su
 
 ## Ecosystem
 
-Core components of this repository: Docker, Superset on Docker, Nginx, pgadmin on Docker
+Core components of this repository: Docker, Superset on Docker, Nginx, pgadmin on Docker, PostgreSQL on Docker, Redis on Docker
 
 Learn more about [Parameters](/docs/stack-components.md).
 
