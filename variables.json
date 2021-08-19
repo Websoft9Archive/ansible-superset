@@ -8,11 +8,11 @@
   "requirements_Bandwidth": "100",
   "requirements_disk": "20",
   "requirements_swap": "2",
-  "requirements_configure_url": "https://superset.apache.org/docs/intro",
+  "requirements_configure_url": "https://superset.apache.org/docs/installation/installing-superset-using-docker-compose",
   "components": "Docker, Superset on Docker, Nginx, pgadmin on Docker, PostgreSQL on Docker, Redis on Docker",
   "install_way": {
-    "en": "Package isntallation",
-    "zh": "包安装"
+    "en": "Docker isntallation",
+    "zh": "Docker安装"
   },
-  "install_url": "https://dist.apache.org/repos/dist/release/superset/1.0.0/"
+  "install_url": "https://github.com/apache/superset/releases"
 }
