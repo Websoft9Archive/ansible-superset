@@ -44,6 +44,21 @@ pip install psycopg2
 
 更多驱动参考官方[Database dependencies](https://superset.apache.org/docs/databases/installing-database-drivers)
 
+### Superset 连接 SQL Server数据库（Superset connect to MS SQL server database ）
+
+```
+# 进入 Superset 容器，以 root 身份运行命令
+docker exec -it -u root superset_app bash
+
+# 安装 MSSQL 驱动
+pip install pymssql
+
+# 在 SuperSet 中连接 SQLServer Database
+#  E.g mssql+pymssql://sa:passwd123@192.168.16.1:1433/test
+mssql+pymssql://username:password@server ip:port/database 
+
+```
+
 ## 重置密码
 
 常用的 Superset 重置密码相关的操作主要有修改密码和找回密码两种类型：
