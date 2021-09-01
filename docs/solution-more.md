@@ -46,6 +46,22 @@ pip install psycopg2
 
 Refer to more [Supported Databases and Dependencies](https://superset.apache.org/docs/databases/installing-database-drivers)
 
+
+### Superset connect to MS SQL server database 
+
+```
+# Access Superset container as root user
+docker exec -it -u root superset_app bash
+
+# Install MSSQL driver
+pip install pymssql
+
+# Log in to Superset, use the following connection string to add SQLServer Database
+#  E.g mssql+pymssql://sa:passwd123@192.168.16.1:1433/test
+mssql+pymssql://username:password@server ip:port/database 
+
+```
+
 ## Resetting Password
 
 There are two main measures to reset password.
