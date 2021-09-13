@@ -69,6 +69,7 @@ Docker Compose 配置目录 */data/wwwroot/superset*
 | TCP | 8088 | Superset 端口 | 可选 |
 | TCP | 80 | 通过 HTTP 访问 Superset | 可选 |
 | TCP | 443 | 通过 HTTPS 访问 Superset | 可选 |
+| TCP | 5432 | 通过 TCP 访问 PostgreSQL数据库 | 可选 |
 | TCP | 9090 | PostgreSQL 可视化管理工具 pgAdmin | 可选 |
 
 ## 版本号
