@@ -7,8 +7,6 @@ docker_install: True
 nginx_login_account: ["admin", "123456"]
 
 nginx_certbot: true
-nginx_appname: "superset"
-nginx_vhost_mode: "reverse"
 nginx_reverse_proxy_port: "9001"
 
 # docker
