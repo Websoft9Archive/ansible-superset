@@ -28,20 +28,29 @@ Superset 采用 Docker 部署，其升级流程：拉取镜像 > 删除容器 > 
 
 > 升级之前请完成服务器的快照备份，以防不测。
 
-1. 使用 SSH 登录服务，进入到 Superset 目录后，拉取最新版本镜像
+1. 使用 SSH 登录服务，进入到 Superset 目录后， 停止当前的 Superset 容器
    ```
    cd /data/wwwroot/superset
-   docker-compose pull
-   ```
-   > 系统会自动拉取最新版镜像，如果没有镜像可拉取，则无需更新
-
-2. 停止并删除当前的 Superset 容器
-
-   ```
-   docker-compose down -v
+   docker-compose down
    ```
 
-3. 重新创建 Superset 容器
+2. 备份并更新docker启动需要的文件
+   ```
+   mv  /data/wwwroot/superset/docker /data/wwwroot/superset/docker_bark
+   mkdir superset-latest
+   cd superset-latest
+   git clone https://github.com/Websoft9/docker-superset.git
+   cp -R docker-superset/docker /data/wwwroot/superset
+   ```
+
+3. 将老版本更新成您指定的版本（注意：不能将版本指定为"latest"）
+
+   ```
+   cd /data/wwwroot/superset
+   sed -i "s/APP_VERSION=old_version/APP_VERSION=new_version/g" /data/wwwroot/superset/.env
+   ```
+   
+4. 重新创建 Superset 容器
    ```
    docker-compose up -d
    ```

@@ -30,16 +30,27 @@ This deployment solution is based on Docker and so you can upgrade Superset by t
 
 > You should complete a snapshot backup before upgrade
 
-1. Use **SSH** to login Server, cd to the directory of docker-compose file, then pull images
+1. Use **SSH** to login Server, cd to the directory of docker-compose file, then stop the containers
    ```
    cd /data/wwwroot/superset
-   docker-compose pull
+   docker-compose down
    ```
-2. Stop the containers
+2. Back up and update docker startup related files
    ```
-   docker-compose down -v
+   mv  /data/wwwroot/superset/docker /data/wwwroot/superset/docker_bark
+   mkdir superset-latest
+   cd superset-latest
+   git clone https://github.com/Websoft9/docker-superset.git
+   cp -R docker-superset/docker /data/wwwroot/superset
    ```
-3. Recreate containers
+
+3. Update to the version you want to upgrade to(Notice: you cannot use latest as the version number)
+
+   ```
+   cd /data/wwwroot/superset
+   sed -i "s/APP_VERSION=old_version/APP_VERSION=new_version/g" /data/wwwroot/superset/.env
+   ```
+4. Recreate containers
    ```
    docker-compose up -d
    ```
