@@ -4,8 +4,6 @@ region: "0"
 common_install_docker: False
 docker_install: True
 
-nginx_login_account: ["admin", "123456"]
-
 nginx_certbot: true
 nginx_reverse_proxy_port: "9001"
 
