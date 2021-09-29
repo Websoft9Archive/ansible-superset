@@ -37,5 +37,5 @@ init_docker:
     commands: 
       - sudo docker-compose -f /data/wwwroot/superset/docker-compose.yml restart
       - sleep 60
-      - if [ -d "/usr/local/aegis" ];then docker exec -it superset-init mkdir /root/.pip;docker cp /root/.pip/pip.conf superset-app:/root/.pip/;pip install elasticsearch-dbapi;fi
+      - if [ -d "/usr/local/aegis" ];then docker exec -it superset-app mkdir /root/.pip;docker cp /root/.pip/pip.conf superset-app:/root/.pip/;docker exec -it superset-app pip install elasticsearch-dbapi;fi
  
