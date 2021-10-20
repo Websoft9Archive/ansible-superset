@@ -31,7 +31,7 @@ init_docker:
     compose_path: "/data/wwwroot/superset/docker-compose.yml" 
     compose_commands: 
       - sudo sed -i "s/DB_POSTGRESQL_PASSWORD=superset/DB_POSTGRESQL_PASSWORD=$new_password/g" /data/wwwroot/superset/.env
-      - sudo sed -i 's/ADMIN_PASSWORD="admin"/ADMIN_PASSWORD="'$new_password'"/g' /data/wwwroot/superset/docker/docker-init.sh
+      - sudo sed -i 's/ADMIN_PASSWORD="admin"/ADMIN_PASSWORD="'$new_password'"/g' /data/wwwroot/superset/src/docker/docker-init.sh
     volumes:
       - /data/wwwroot/superset/volumes
     commands: 
