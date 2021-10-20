@@ -20,9 +20,6 @@
 - name: Rename and Run docker-compose
   shell: |
     if [ -d "/usr/local/aegis" ];then rm -rf docker/requirements-local.txt;fi
-    rm -rf docker-compose.yml .env
-    mv docker-compose-production.yml docker-compose.yml
-    mv .env_all .env 
     docker-compose up -d
     sleep 30
   args:
