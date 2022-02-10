@@ -66,7 +66,6 @@ Docker Compose 配置目录 */data/wwwroot/superset*
 
 | 名称 | 端口号 | 用途 |  必要性 |
 | --- | --- | --- | --- |
-| TCP | 8088 | Superset 端口 | 可选 |
 | TCP | 80 | 通过 HTTP 访问 Superset | 必选 |
 | TCP | 443 | 通过 HTTPS 访问 Superset | 可选 |
 | TCP | 5432 | 通过 TCP 访问 PostgreSQL数据库 | 可选 |
