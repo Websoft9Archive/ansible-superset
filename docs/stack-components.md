@@ -58,9 +58,6 @@ You can run the cmd `netstat -tunlp` to list all used ports, and we list the fol
 
 | Name | Number | Use |  Necessity |
 | --- | --- | --- | --- |
-| HTTP | 8161 | HTTP requests for Superset Console| Required |
-| HTTPS | 5672 | epmd | Optional |
-| TCP | 8088 | Superset | Optional |
 | TCP | 80 | HTTP access Superset | Optional |
 | TCP | 443 | HTTPS access Superset | Optional |
 | TCP | 9090 | PostgreSQL Web-GUI tool | Optional |
