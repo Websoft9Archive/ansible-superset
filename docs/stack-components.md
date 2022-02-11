@@ -61,6 +61,7 @@ You can run the cmd `netstat -tunlp` to list all used ports, and we list the fol
 | TCP | 80 | HTTP access Superset | Optional |
 | TCP | 443 | HTTPS access Superset | Optional |
 | TCP | 9090 | PostgreSQL Web-GUI tool | Optional |
+| TCP | 5432 | TCP Access PostgreSQL | Optional |
 
 ## Version
 
